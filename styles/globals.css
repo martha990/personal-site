@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  
+  /* Psychology Practice Color Palette */
+  --rosa-polvere: #F5C2C7;
+  --nero-profondo: #000000;
+  --bianco-puro: #FFFFFF;
+  --grigio-chiaro: #F8F8F8;
+  --grigio-medio: #6B7280;
+  --rosa-scuro: #E91E63;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --whatsapp-green: #25D366;
+  
+  /* Design System Tokens */
+  --background: var(--rosa-polvere);
+  --foreground: var(--nero-profondo);
+  --card: var(--bianco-puro);
+  --card-foreground: var(--nero-profondo);
+  --popover: var(--bianco-puro);
+  --popover-foreground: var(--nero-profondo);
+  --primary: var(--nero-profondo);
+  --primary-foreground: var(--bianco-puro);
+  --secondary: var(--grigio-chiaro);
+  --secondary-foreground: var(--nero-profondo);
+  --muted: var(--grigio-chiaro);
+  --muted-foreground: var(--grigio-medio);
+  --accent: var(--rosa-scuro);
+  --accent-foreground: var(--bianco-puro);
+  --destructive: var(--error);
+  --destructive-foreground: var(--bianco-puro);
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: var(--bianco-puro);
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--rosa-scuro);
+  
+  /* Typography Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: var(--nero-profondo);
+  --foreground: var(--bianco-puro);
+  --card: var(--nero-profondo);
+  --card-foreground: var(--bianco-puro);
+  --popover: var(--nero-profondo);
+  --popover-foreground: var(--bianco-puro);
+  --primary: var(--bianco-puro);
+  --primary-foreground: var(--nero-profondo);
+  --secondary: #374151;
+  --secondary-foreground: var(--bianco-puro);
+  --muted: #374151;
+  --muted-foreground: var(--grigio-medio);
+  --accent: var(--rosa-scuro);
+  --accent-foreground: var(--bianco-puro);
+  --destructive: var(--error);
+  --destructive-foreground: var(--bianco-puro);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: #374151;
+  --ring: var(--rosa-scuro);
+}
+
+@theme inline {
+  --color-rosa-polvere: var(--rosa-polvere);
+  --color-nero-profondo: var(--nero-profondo);
+  --color-bianco-puro: var(--bianco-puro);
+  --color-grigio-chiaro: var(--grigio-chiaro);
+  --color-grigio-medio: var(--grigio-medio);
+  --color-rosa-scuro: var(--rosa-scuro);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-whatsapp-green: var(--whatsapp-green);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-rosa-polvere text-nero-profondo;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/**
+ * Typography System for Psychology Practice
+ */
+@layer base {
+  .script-heading {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    color: var(--nero-profondo);
+    letter-spacing: -0.02em;
+  }
+  
+  .tagline {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--nero-profondo);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+  }
+  
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: var(--text-5xl);
+      font-weight: 700;
+      line-height: 1.2;
+      font-family: 'Dancing Script', cursive;
+      color: var(--nero-profondo);
+    }
+
+    h2 {
+      font-size: var(--text-3xl);
+      font-weight: 600;
+      line-height: 1.3;
+      font-family: 'Inter', sans-serif;
+      color: var(--nero-profondo);
+    }
+
+    h3 {
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      line-height: 1.3;
+      font-family: 'Inter', sans-serif;
+      color: var(--nero-profondo);
+    }
+
+    h4 {
+      font-size: var(--text-xl);
+      font-weight: 500;
+      line-height: 1.4;
+      font-family: 'Inter', sans-serif;
+      color: var(--nero-profondo);
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: 400;
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+      color: #374151;
+    }
+
+    label {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+      color: var(--nero-profondo);
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: 600;
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    input, textarea {
+      font-size: var(--text-base);
+      font-weight: 400;
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+  }
+}
+
+/* Custom Component Styles */
+@layer components {
+  .whatsapp-btn {
+    @apply bg-whatsapp-green text-white rounded-full px-6 py-3 hover:bg-green-600 transition-all duration-300 hover:scale-105 shadow-lg;
+  }
+  
+  .service-card {
+    @apply bg-white rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border;
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(135deg, var(--rosa-polvere) 0%, var(--grigio-chiaro) 100%);
+  }
+  
+  .nav-sticky {
+    @apply sticky top-0 z-50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+/* Animation Classes */
+@layer utilities {
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .section-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .section-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+/* Responsive Typography */
+@media (max-width: 767px) {
+  .script-heading {
+    font-size: 2.5rem;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .script-heading {
+    font-size: 4rem;
+  }
+  
+  .tagline {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .script-heading {
+    font-size: 5rem;
+  }
+  
+  .tagline {
+    font-size: 1.5rem;
+  }
+}
