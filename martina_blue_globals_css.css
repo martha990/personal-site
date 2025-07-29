@@ -5,42 +5,42 @@
 :root {
   --font-size: 16px;
   
-  /* Psychology Practice Color Palette */
-  --rosa-polvere: #F5C2C7;
-  --nero-profondo: #000000;
+  /* Psychology Practice Color Palette - BLU THEME */
+  --blu-primario: #2563EB;
+  --blu-scuro: #1E40AF;
   --bianco-puro: #FFFFFF;
-  --grigio-chiaro: #F8F8F8;
-  --grigio-medio: #6B7280;
-  --rosa-scuro: #E91E63;
+  --grigio-chiaro: #F8FAFC;
+  --grigio-medio: #64748B;
+  --blu-accent: #3B82F6;
   --success: #10B981;
   --warning: #F59E0B;
   --error: #EF4444;
   --whatsapp-green: #25D366;
   
   /* Design System Tokens */
-  --background: var(--rosa-polvere);
-  --foreground: var(--nero-profondo);
+  --background: var(--grigio-chiaro);
+  --foreground: var(--blu-scuro);
   --card: var(--bianco-puro);
-  --card-foreground: var(--nero-profondo);
+  --card-foreground: var(--blu-scuro);
   --popover: var(--bianco-puro);
-  --popover-foreground: var(--nero-profondo);
-  --primary: var(--nero-profondo);
+  --popover-foreground: var(--blu-scuro);
+  --primary: var(--blu-primario);
   --primary-foreground: var(--bianco-puro);
   --secondary: var(--grigio-chiaro);
-  --secondary-foreground: var(--nero-profondo);
+  --secondary-foreground: var(--blu-scuro);
   --muted: var(--grigio-chiaro);
   --muted-foreground: var(--grigio-medio);
-  --accent: var(--rosa-scuro);
+  --accent: var(--blu-accent);
   --accent-foreground: var(--bianco-puro);
   --destructive: var(--error);
   --destructive-foreground: var(--bianco-puro);
-  --border: rgba(0, 0, 0, 0.1);
+  --border: rgba(37, 99, 235, 0.1);
   --input: transparent;
   --input-background: var(--bianco-puro);
   --switch-background: #cbced4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: var(--rosa-scuro);
+  --ring: var(--blu-accent);
   
   /* Typography Scale */
   --text-xs: 0.75rem;
@@ -58,34 +58,34 @@
 }
 
 .dark {
-  --background: var(--nero-profondo);
+  --background: var(--blu-scuro);
   --foreground: var(--bianco-puro);
-  --card: var(--nero-profondo);
+  --card: var(--blu-scuro);
   --card-foreground: var(--bianco-puro);
-  --popover: var(--nero-profondo);
+  --popover: var(--blu-scuro);
   --popover-foreground: var(--bianco-puro);
   --primary: var(--bianco-puro);
-  --primary-foreground: var(--nero-profondo);
+  --primary-foreground: var(--blu-scuro);
   --secondary: #374151;
   --secondary-foreground: var(--bianco-puro);
   --muted: #374151;
   --muted-foreground: var(--grigio-medio);
-  --accent: var(--rosa-scuro);
+  --accent: var(--blu-accent);
   --accent-foreground: var(--bianco-puro);
   --destructive: var(--error);
   --destructive-foreground: var(--bianco-puro);
-  --border: rgba(255, 255, 255, 0.1);
+  --border: rgba(59, 130, 246, 0.1);
   --input: #374151;
-  --ring: var(--rosa-scuro);
+  --ring: var(--blu-accent);
 }
 
 @theme inline {
-  --color-rosa-polvere: var(--rosa-polvere);
-  --color-nero-profondo: var(--nero-profondo);
+  --color-blu-primario: var(--blu-primario);
+  --color-blu-scuro: var(--blu-scuro);
   --color-bianco-puro: var(--bianco-puro);
   --color-grigio-chiaro: var(--grigio-chiaro);
   --color-grigio-medio: var(--grigio-medio);
-  --color-rosa-scuro: var(--rosa-scuro);
+  --color-blu-accent: var(--blu-accent);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
@@ -125,26 +125,26 @@
   }
 
   body {
-    @apply bg-rosa-polvere text-nero-profondo;
+    @apply bg-grigio-chiaro text-blu-scuro;
     font-family: 'Inter', sans-serif;
   }
 }
 
 /**
- * Typography System for Psychology Practice
+ * Typography System for Psychology Practice - BLU THEME
  */
 @layer base {
   .script-heading {
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
-    color: var(--nero-profondo);
+    color: var(--blu-scuro);
     letter-spacing: -0.02em;
   }
   
   .tagline {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    color: var(--nero-profondo);
+    color: var(--blu-scuro);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -163,7 +163,7 @@
       font-weight: 700;
       line-height: 1.2;
       font-family: 'Dancing Script', cursive;
-      color: var(--nero-profondo);
+      color: var(--blu-scuro);
     }
 
     h2 {
@@ -171,7 +171,7 @@
       font-weight: 600;
       line-height: 1.3;
       font-family: 'Inter', sans-serif;
-      color: var(--nero-profondo);
+      color: var(--blu-scuro);
     }
 
     h3 {
@@ -179,7 +179,7 @@
       font-weight: 600;
       line-height: 1.3;
       font-family: 'Inter', sans-serif;
-      color: var(--nero-profondo);
+      color: var(--blu-scuro);
     }
 
     h4 {
@@ -187,7 +187,7 @@
       font-weight: 500;
       line-height: 1.4;
       font-family: 'Inter', sans-serif;
-      color: var(--nero-profondo);
+      color: var(--blu-scuro);
     }
 
     p {
@@ -203,7 +203,7 @@
       font-weight: 500;
       line-height: 1.5;
       font-family: 'Inter', sans-serif;
-      color: var(--nero-profondo);
+      color: var(--blu-scuro);
     }
 
     button {
@@ -222,18 +222,19 @@
   }
 }
 
-/* Custom Component Styles */
+/* Custom Component Styles - BLU THEME */
 @layer components {
   .whatsapp-btn {
     @apply bg-whatsapp-green text-white rounded-full px-6 py-3 hover:bg-green-600 transition-all duration-300 hover:scale-105 shadow-lg;
   }
   
   .service-card {
-    @apply bg-white rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border;
+    @apply bg-white rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+    border: 1px solid var(--border);
   }
   
   .hero-gradient {
-    background: linear-gradient(135deg, var(--rosa-polvere) 0%, var(--grigio-chiaro) 100%);
+    background: linear-gradient(135deg, #EFF6FF 0%, var(--grigio-chiaro) 100%);
   }
   
   .nav-sticky {

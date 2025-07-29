@@ -77,7 +77,7 @@ export function ContattiSection() {
           
           {/* Contact Form */}
           <div>
-            <Card className="shadow-lg border-rosa-polvere">
+            <Card className="shadow-lg border-blu-primario">
               <CardHeader>
                 <CardTitle className="text-xl text-center">
                   Invia un Messaggio
@@ -166,7 +166,7 @@ export function ContattiSection() {
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-rosa-scuro hover:bg-pink-700 text-white py-3"
+                    className="w-full bg-blu-accent hover:bg-blu-scuro text-white py-3"
                     disabled={!formData.privacy}
                   >
                     <Send className="w-4 h-4 mr-2" />
@@ -181,7 +181,7 @@ export function ContattiSection() {
           <div className="space-y-8">
             
             {/* Quick Contact */}
-            <Card className="bg-rosa-polvere border-rosa-scuro">
+            <Card className="bg-grigio-chiaro border-blu-primario">
               <CardContent className="p-6">
                 <h3 className="text-xl mb-6 text-center">
                   Contatto Diretto
@@ -189,7 +189,7 @@ export function ContattiSection() {
                 
                 <div className="space-y-4 mb-6">
                   <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-rosa-scuro" />
+                    <Phone className="w-5 h-5 text-blu-primario" />
                     <div>
                       <p className="font-semibold">Telefono</p>
                       <p className="text-sm text-gray-600">+39 xxx xxx xxxx</p>
@@ -197,7 +197,7 @@ export function ContattiSection() {
                   </div>
                   
                   <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-rosa-scuro" />
+                    <Mail className="w-5 h-5 text-blu-primario" />
                     <div>
                       <p className="font-semibold">Email</p>
                       <p className="text-sm text-gray-600">info@martinaevangelisti.it</p>
@@ -205,7 +205,7 @@ export function ContattiSection() {
                   </div>
                   
                   <div className="flex items-center gap-3">
-                    <MapPin className="w-5 h-5 text-rosa-scuro" />
+                    <MapPin className="w-5 h-5 text-blu-primario" />
                     <div>
                       <p className="font-semibold">Studio</p>
                       <p className="text-sm text-gray-600">Via Roma 123, Bologna (BO)</p>
@@ -213,7 +213,7 @@ export function ContattiSection() {
                   </div>
                   
                   <div className="flex items-center gap-3">
-                    <Clock className="w-5 h-5 text-rosa-scuro" />
+                    <Clock className="w-5 h-5 text-blu-primario" />
                     <div>
                       <p className="font-semibold">Orari</p>
                       <p className="text-sm text-gray-600">Lun-Ven: 9:00-19:00</p>
@@ -229,6 +229,38 @@ export function ContattiSection() {
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Scrivimi su WhatsApp
                 </Button>
+              </CardContent>
+            </Card>
+
+            {/* Social Media Section */}
+            <Card className="bg-white border-blu-primario">
+              <CardContent className="p-6 text-center">
+                <h3 className="text-lg mb-4 text-blu-scuro font-semibold">
+                  Seguimi sui Social
+                </h3>
+                <div className="flex justify-center gap-4 mb-4">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="bg-blu-primario text-white hover:bg-blu-scuro transition-all duration-300 hover:scale-105"
+                    onClick={() => window.open('https://linkedin.com/in/martinaevangelisti', '_blank')}
+                  >
+                    <Linkedin className="w-4 h-4 mr-2" />
+                    LinkedIn
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-blu-primario text-blu-primario hover:bg-blu-primario hover:text-white transition-all duration-300"
+                    onClick={() => window.open('https://instagram.com/martinaevangelisti', '_blank')}
+                  >
+                    <Instagram className="w-4 h-4 mr-2" />
+                    Instagram
+                  </Button>
+                </div>
+                <p className="text-xs text-gray-500">
+                  Contenuti di valore sul benessere psicologico e consigli per la crescita personale
+                </p>
               </CardContent>
             </Card>
 
@@ -253,38 +285,6 @@ export function ContattiSection() {
                     📍 Studio facilmente raggiungibile con mezzi pubblici e parcheggio nelle vicinanze
                   </p>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Social Media */}
-            <Card className="bg-grigio-chiaro">
-              <CardContent className="p-6 text-center">
-                <h3 className="text-lg mb-4">
-                  Seguimi sui Social
-                </h3>
-                <div className="flex justify-center gap-4">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-rosa-scuro text-rosa-scuro hover:bg-rosa-scuro hover:text-white"
-                    onClick={() => window.open('https://instagram.com/martinaevangelisti', '_blank')}
-                  >
-                    <Instagram className="w-4 h-4 mr-2" />
-                    Instagram
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-rosa-scuro text-rosa-scuro hover:bg-rosa-scuro hover:text-white"
-                    onClick={() => window.open('https://linkedin.com/in/martinaevangelisti', '_blank')}
-                  >
-                    <Linkedin className="w-4 h-4 mr-2" />
-                    LinkedIn
-                  </Button>
-                </div>
-                <p className="text-xs text-gray-500 mt-3">
-                  Contenuti di valore sul benessere psicologico
-                </p>
               </CardContent>
             </Card>
           </div>

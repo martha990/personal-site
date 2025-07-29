@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martina Evangelisti - Psicologa Clinica</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Psychology Practice Color Palette - BLU THEME */
+            --blu-primario: #2563EB;
+            --blu-scuro: #1E40AF;
+            --bianco-puro: #FFFFFF;
+            --grigio-chiaro: #F8FAFC;
+            --grigio-medio: #64748B;
+            --blu-accent: #3B82F6;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --whatsapp-green: #25D366;
+            
+            /* Shadows */
+            --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--blu-scuro);
+            background: var(--grigio-chiaro);
+        }
+
+        /* Typography Classes */
+        .script-heading {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            color: var(--blu-scuro);
+            letter-spacing: -0.02em;
+        }
+        
+        .tagline {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--blu-scuro);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-soft);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .nav-container {
+            max-width: 6xl;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blu-scuro);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--blu-scuro);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--blu-accent);
+            color: var(--blu-accent);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--blu-scuro);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #EFF6FF 0%, var(--grigio-chiaro) 100%);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero-container {
+            max-width: 6xl;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--blu-scuro);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--blu-scuro);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--grigio-medio);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+        }
+
+        .hero-image-main {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--bianco-puro) 0%, var(--grigio-chiaro) 100%);
+            border: 8px solid var(--bianco-puro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--grigio-medio);
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Decorative Elements - BLU Theme */
+        .decorative-dot {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .dot-1 {
+            width: 16px;
+            height: 16px;
+            background: var(--blu-accent);
+            top: -8px;
+            right: 60px;
+        }
+
+        .dot-2 {
+            width: 12px;
+            height: 12px;
+            background: var(--blu-primario);
+            bottom: 40px;
+            left: -20px;
+        }
+
+        .dot-3 {
+            width: 20px;
+            height: 20px;
+            background: var(--blu-accent);
+            top: 80px;
+            right: -30px;
+        }
+
+        .dot-4 {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            top: 200px;
+            left: -15px;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--whatsapp-green);
+            color: var(--bianco-puro);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #1ea952;
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--blu-primario);
+            color: var(--blu-primario);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--blu-primario);
+            color: var(--bianco-puro);
+        }
+
+        /* Services Preview */
+        .services-preview {
+            background: var(--bianco-puro);
+            padding: 5rem 2rem;
+        }
+
+        .services-container {
+            max-width: 6xl;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--blu-scuro);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--grigio-medio);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: var(--bianco-puro);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--blu-accent);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--blu-primario);
+            color: var(--bianco-puro);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--blu-scuro);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--grigio-medio);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Chi Sono Section */
+        .chi-sono {
+            background: var(--grigio-chiaro);
+            padding: 5rem 2rem;
+        }
+
+        .chi-sono-container {
+            max-width: 6xl;
+            margin: 0 auto;
+        }
+
+        .chi-sono-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .chi-sono-content {
+            space-y: 2rem;
+        }
+
+        .chi-sono-content p {
+            font-size: 1.1rem;
+            color: var(--grigio-medio);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .chi-sono-image {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .chi-sono-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 4px solid var(--blu-accent);
+            box-shadow: var(--shadow-xl);
+            background: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Highlight Box - BLU Theme */
+        .highlight-box {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #EFF6FF 0%, rgba(37, 99, 235, 0.05) 100%);
+            border-radius: 15px;
+            border-left: 4px solid var(--blu-primario);
+        }
+
+        /* Contatti Section */
+        .contatti {
+            background: var(--bianco-puro);
+            padding: 5rem 2rem;
+        }
+
+        .contatti-container {
+            max-width: 4xl;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--bianco-puro);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--blu-primario);
+        }
+
+        /* Special Offer Box - BLU Theme */
+        .offer-box {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #EFF6FF 0%, rgba(37, 99, 235, 0.1) 100%);
+            border-radius: 15px;
+            border: 2px solid var(--blu-accent);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--blu-scuro);
+            color: var(--bianco-puro);
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 6xl;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--blu-accent);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--blu-accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            display: none;
+        }
+
+        .floating-whatsapp button {
+            width: 60px;
+            height: 60px;
+            background: var(--whatsapp-green);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: var(--shadow-hover);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .floating-whatsapp button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #EFF6FF;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-soft);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero-image-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .services-preview {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chi-sono {
+                padding: 3rem 1rem;
+            }
+
+            .chi-sono-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contatti {
+                padding: 3rem 1rem;
+            }
+
+            .floating-whatsapp {
+                display: block;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .fade-in-up-delayed {
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth scroll offset for fixed nav */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* Hide decorative elements on mobile */
+        @media (max-width: 768px) {
+            .decorative-dot {
+                display: none;
+            }
+        }
+
+        /* Professional credibility elements */
+        .credentials-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .credentials-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .credentials-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--blu-primario);
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Martina Evangelisti</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#chi-sono" class="nav-link">Chi Sono</a></li>
+                <li><a href="#servizi" class="nav-link">Servizi</a></li>
+                <li><a href="#contatti" class="nav-link">Contatti</a></li>
+            </ul>
+            <div class="mobile-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content fade-in-up">
+                <h1>Martina Evangelisti</h1>
+                <p class="hero-tagline">Psicologa Clinica</p>
+                <p class="hero-description">
+                    Supporto professionale per il tuo benessere psicologico attraverso 
+                    consulenze personalizzate in un ambiente accogliente e riservato.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/393123456789?text=Ciao%20Martina%2C%20vorrei%20informazioni%20sui%20tuoi%20servizi" 
+                       class="btn-primary" target="_blank">
+                        💬 Contattami su WhatsApp
+                    </a>
+                    <a href="#servizi" class="btn-secondary">
+                        Scopri i Servizi ↓
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image fade-in-up-delayed">
+                <div class="hero-image-container">
+                    <div class="hero-image-main"></div>
+                    <!-- Decorative Elements - BLU Theme -->
+                    <div class="decorative-dot dot-1"></div>
+                    <div class="decorative-dot dot-2"></div>
+                    <div class="decorative-dot dot-3"></div>
+                    <div class="decorative-dot dot-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section id="servizi" class="services-preview section-reveal">
+        <div class="services-container">
+            <h2 class="section-title">I Miei Servizi</h2>
+            <p class="section-subtitle">
+                Offro supporto psicologico professionale attraverso diversi approcci, 
+                adattati alle tue esigenze specifiche e modalità preferite.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🧠</div>
+                    <h3>Consulenza Psicologica</h3>
+                    <p>Percorsi individuali personalizzati per gestire ansia, depressione, stress e difficoltà emotive con approccio professionale basato su evidenze scientifiche.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💑</div>
+                    <h3>Terapia di Coppia</h3>
+                    <p>Supporto per coppie che attraversano crisi, conflitti o vogliono migliorare la comunicazione e l'intesa reciproca attraverso tecniche validate.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Sostegno Familiare</h3>
+                    <p>Interventi per famiglie con dinamiche complesse, adolescenti in difficoltà o periodi di cambiamento e transizione significativi.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Consulenza Breve</h3>
+                    <p>Interventi focalizzati su problematiche specifiche con obiettivi mirati e tempi ridotti per risultati rapidi ed efficaci.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Sono Section -->
+    <section id="chi-sono" class="chi-sono section-reveal">
+        <div class="chi-sono-container">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h2 class="section-title">Chi Sono</h2>
+                <p class="section-subtitle">
+                    Psicologa clinica con passione per il benessere delle persone e specializzazione 
+                    in terapia cognitivo-comportamentale.
+                </p>
+            </div>
+            
+            <div class="chi-sono-grid">
+                <div class="chi-sono-content">
+                    <p>
+                        Sono <strong>Martina Evangelisti</strong>, psicologa clinica specializzata nel supporto 
+                        a persone che attraversano momenti di difficoltà emotiva, relazionale o psicologica. 
+                        La mia passione per la psicologia nasce dalla convinzione che ogni persona abbia 
+                        dentro di sé le risorse necessarie per stare bene.
+                    </p>
+                    
+                    <p>
+                        Nel mio lavoro utilizzo un <strong>approccio integrato</strong> che combina tecniche 
+                        cognitive-comportamentali con elementi di mindfulness e terapia umanistica. 
+                        Credo fortemente nell'importanza di personalizzare ogni intervento, perché ogni 
+                        storia è unica e merita un percorso su misura.
+                    </p>
+                    
+                    <p>
+                        Offro consulenze sia <strong>online</strong> che <strong>in presenza</strong>, 
+                        garantendo sempre la massima riservatezza e professionalità. Il mio obiettivo 
+                        è creare uno spazio sicuro dove poter esplorare insieme le difficoltà e 
+                        sviluppare strategie efficaci per il benessere.
+                    </p>
+
+                    <div style="margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--blu-scuro);">Formazione Professionale</h3>
+                        <ul class="credentials-list">
+                            <li>
+                                <span class="credentials-dot"></span>
+                                <span><strong>2018:</strong> Laurea Magistrale in Psicologia Clinica - Università di Bologna</span>
+                            </li>
+                            <li>
+                                <span class="credentials-dot"></span>
+                                <span><strong>2019:</strong> Abilitazione Professionale - Ordine Psicologi Emilia-Romagna</span>
+                            </li>
+                            <li>
+                                <span class="credentials-dot"></span>
+                                <span><strong>2022:</strong> Specializzazione in Terapia Cognitivo-Comportamentale</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p style="margin: 0; text-align: center; font-style: italic; color: var(--blu-scuro);">
+                            "Ogni persona ha una storia unica che merita di essere ascoltata con attenzione, 
+                            rispetto e senza giudizio. Il mio ruolo è accompagnarti nel tuo percorso di crescita."
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="chi-sono-image">
+                    <div class="chi-sono-photo"></div>
+                    <div style="margin-top: 1.5rem; text-align: center; padding: 1rem; background: var(--bianco-puro); border-radius: 10px; box-shadow: var(--shadow-soft); border: 1px solid rgba(37, 99, 235, 0.1);">
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--grigio-medio);">
+                            📍 <strong style="color: var(--blu-scuro);">Studio Privato</strong><br>
+                            Via Roma 123, Bologna<br>
+                            🕒 Lun-Ven: 9:00-19:00<br>
+                            🕒 Sab: 9:00-13:00
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="contatti section-reveal">
+        <div class="contatti-container">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h2 class="section-title">Contatti</h2>
+                <p class="section-subtitle">
+                    Sono qui per ascoltarti. Contattami per prenotare una consulenza 
+                    o per qualsiasi informazione sui miei servizi.
+                </p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong style="color: var(--blu-scuro);">Telefono</strong><br>
+                            <span style="color: var(--grigio-medio);">+39 xxx xxx xxxx</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <strong style="color: var(--blu-scuro);">Email</strong><br>
+                            <span style="color: var(--grigio-medio);">info@martinaevangelisti.it</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong style="color: var(--blu-scuro);">Studio</strong><br>
+                            <span style="color: var(--grigio-medio);">Via Roma 123, Bologna (BO)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <strong style="color: var(--blu-scuro);">Orari</strong><br>
+                            <span style="color: var(--grigio-medio);">Lun-Ven: 9:00-19:00<br>Sab: 9:00-13:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/393123456789?text=Ciao%20Martina%2C%20vorrei%20prenotare%20una%20consulenza" 
+                   class="btn-primary" target="_blank" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
+                    💬 Scrivimi su WhatsApp
+                </a>
+                
+                <!-- Social Media Section -->
+                <div style="margin-top: 2rem; padding: 2rem; background: var(--bianco-puro); border-radius: 15px; box-shadow: var(--shadow-soft); border: 1px solid rgba(37, 99, 235, 0.1);">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--blu-scuro); text-align: center;">
+                        Seguimi sui Social
+                    </h3>
+                    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://linkedin.com/in/martinaevangelisti" 
+                           target="_blank" 
+                           style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--blu-primario); color: var(--bianco-puro); text-decoration: none; border-radius: 50px; font-weight: 500; transition: all 0.3s ease; box-shadow: var(--shadow-soft);"
+                           onmouseover="this.style.background='var(--blu-scuro)'; this.style.transform='scale(1.05)'"
+                           onmouseout="this.style.background='var(--blu-primario)'; this.style.transform='scale(1)'">
+                            <span style="font-size: 1.2rem;">💼</span>
+                            LinkedIn
+                        </a>
+                        <a href="https://instagram.com/martinaevangelisti" 
+                           target="_blank" 
+                           style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: transparent; color: var(--blu-primario); text-decoration: none; border-radius: 50px; font-weight: 500; border: 2px solid var(--blu-primario); transition: all 0.3s ease;"
+                           onmouseover="this.style.background='var(--blu-primario)'; this.style.color='var(--bianco-puro)'"
+                           onmouseout="this.style.background='transparent'; this.style.color='var(--blu-primario)'">
+                            <span style="font-size: 1.2rem;">📸</span>
+                            Instagram
+                        </a>
+                    </div>
+                    <p style="margin-top: 1rem; margin-bottom: 0; text-align: center; font-size: 0.85rem; color: var(--grigio-medio);">
+                        Contenuti di valore sul benessere psicologico e consigli per la crescita personale
+                    </p>
+                </div>
+
+                <div class="offer-box">
+                    <p style="margin: 0; text-align: center; font-weight: 500; color: var(--blu-scuro);">
+                        🎁 <strong>Primo Colloquio Gratuito</strong><br>
+                        <span style="font-size: 0.9rem; color: var(--grigio-medio); font-weight: normal;">
+                            Conosciamoci senza impegno. Il primo incontro di 30 minuti è sempre gratuito.
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <h3 class="script-heading" style="font-size: 2rem; color: var(--blu-accent); margin-bottom: 1rem;">
+                    Martina Evangelisti
+                </h3>
+                <p style="margin-bottom: 1rem;">
+                    Psicologa clinica specializzata nel supporto al benessere psicologico 
+                    attraverso consulenze personalizzate online e in presenza.
+                </p>
+                <p style="font-size: 0.8rem;">
+                    Iscritta all'Ordine degli Psicologi dell'Emilia-Romagna n. 1234
+                </p>
+            </div>
+            
+            <div>
+                <h4>Link Utili</h4>
+                <a href="#home">Home</a>
+                <a href="#chi-sono">Chi Sono</a>
+                <a href="#servizi">Servizi</a>
+                <a href="#contatti">Contatti</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            
+            <div>
+                <h4>Servizi</h4>
+                <a href="#servizi">Consulenza Individuale</a>
+                <a href="#servizi">Terapia di Coppia</a>
+                <a href="#servizi">Sostegno Familiare</a>
+                <a href="#servizi">Consulenza Breve</a>
+            </div>
+            
+            <div>
+                <h4>Contatti</h4>
+                <p>📱 +39 xxx xxx xxxx</p>
+                <p>✉️ info@martinaevangelisti.it</p>
+                <p>📍 Via Roma 123, Bologna (BO)</p>
+                <div style="margin-top: 1rem;">
+                    <a href="https://instagram.com/martinaevangelisti" target="_blank" style="margin-right: 1rem;">Instagram</a>
+                    <a href="https://linkedin.com/in/martinaevangelisti" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 Dott.ssa Martina Evangelisti - Psicologa. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button (Mobile) -->
+    <div class="floating-whatsapp">
+        <button onclick="openWhatsApp()" title="Contatta su WhatsApp">
+            💬
+        </button>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            
+            navLinks.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+
+                // Close mobile menu if open
+                document.getElementById('navLinks').classList.remove('active');
+                
+                // Update active link
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // WhatsApp function
+        function openWhatsApp() {
+            const whatsappNumber = "393123456789";
+            const message = "Ciao Martina, vorrei prenotare una consulenza";
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections with reveal animation
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Active navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Service cards click to WhatsApp
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const serviceName = card.querySelector('h3').textContent;
+                const whatsappNumber = "393123456789";
+                const message = `Ciao Martina, sono interessato/a al servizio "${serviceName}". Vorrei prenotare una consulenza.`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>

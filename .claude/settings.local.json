@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "mcp__puppeteer__puppeteer_screenshot"
+    ],
+    "deny": []
+  }
+}
