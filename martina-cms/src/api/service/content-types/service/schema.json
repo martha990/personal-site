@@ -1,0 +1,37 @@
+{
+    "kind": "collectionType",
+    "collectionName": "services",
+    "info": {
+        "singularName": "service",
+        "pluralName": "services",
+        "displayName": "Service",
+        "description": "Servizi offerti dalla psicologa"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {}
+        },
+        "description": {
+            "type": "richtext",
+            "required": true,
+            "pluginOptions": {}
+        },
+        "icon": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {}
+        },
+        "order": {
+            "type": "integer",
+            "required": true,
+            "default": 1,
+            "pluginOptions": {}
+        }
+    }
+}

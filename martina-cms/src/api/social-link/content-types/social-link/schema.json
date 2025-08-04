@@ -1,0 +1,35 @@
+{
+    "kind": "collectionType",
+    "collectionName": "social_links",
+    "info": {
+        "singularName": "social-link",
+        "pluralName": "social-links",
+        "displayName": "Social Link",
+        "description": "Link social media"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "image": {
+            "type": "media",
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+                "images"
+            ],
+            "pluginOptions": {}
+        },
+        "label": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {}
+        },
+        "style": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {}
+        }
+    }
+}

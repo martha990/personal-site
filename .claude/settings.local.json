@@ -4,7 +4,10 @@
       "Bash(mkdir:*)",
       "Bash(npm install:*)",
       "mcp__puppeteer__puppeteer_screenshot",
-      "mcp__brave-search__brave_web_search"
+      "mcp__brave-search__brave_web_search",
+      "mcp__sequentialthinking__sequentialthinking",
+      "mcp__Context7__resolve-library-id",
+      "mcp__Context7__get-library-docs"
     ],
     "deny": []
   }

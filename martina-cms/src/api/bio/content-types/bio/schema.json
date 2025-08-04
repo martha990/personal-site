@@ -1,0 +1,26 @@
+{
+    "kind": "collectionType",
+    "collectionName": "bios",
+    "info": {
+        "singularName": "bio",
+        "pluralName": "bios",
+        "displayName": "Bio",
+        "description": "Contenuti della sezione Chi Sono"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "subtitle": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {}
+        },
+        "body": {
+            "type": "richtext",
+            "required": true,
+            "pluginOptions": {}
+        }
+    }
+}
