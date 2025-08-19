@@ -7,7 +7,11 @@
       "mcp__brave-search__brave_web_search",
       "mcp__sequentialthinking__sequentialthinking",
       "mcp__Context7__resolve-library-id",
-      "mcp__Context7__get-library-docs"
+      "mcp__Context7__get-library-docs",
+      "Bash(rm:*)",
+      "Bash(npm run develop:*)",
+      "WebFetch(domain:docs.strapi.io)",
+      "mcp__perplexity-ask__perplexity_ask"
     ],
     "deny": []
   }

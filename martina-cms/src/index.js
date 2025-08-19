@@ -1,10 +1,13 @@
-import type { Core } from '@strapi/strapi';
+/**
+ * Application lifecycle file for Strapi v5
+ * This file runs after Strapi is fully initialized
+ */
 
-export default {
+module.exports = {
   /**
    * An asynchronous register function that runs before initialization
    */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {
+  register(/* { strapi } */) {
     // Register phase - no database access here
   },
 
@@ -12,7 +15,7 @@ export default {
    * An asynchronous bootstrap function that runs after Strapi is ready
    * This is where we seed our data using entityService!
    */
-  async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+  async bootstrap({ strapi }) {
     console.log('\n🌱 BOOTSTRAP DATA SEEDING STARTED 🌱');
     console.log('=====================================');
     
@@ -150,7 +153,7 @@ export default {
   /**
    * An asynchronous destroy function that runs before Strapi shuts down
    */
-  destroy(/* { strapi }: { strapi: Core.Strapi } */) {
+  destroy(/* { strapi } */) {
     // Cleanup code here if needed
   }
 };

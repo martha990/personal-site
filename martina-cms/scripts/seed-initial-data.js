@@ -1,212 +1,187 @@
-'use strict';
-
 /**
- * Script per popolare automaticamente i contenuti iniziali in Strapi
- * Utilizza i dati estratti dal file index.html per creare contenuti di esempio
+ * Seed script for Strapi v5 - Updated for v5 API
+ * Uses documents API instead of entityService
  */
 
 module.exports = async ({ strapi }) => {
+  console.log('\n🌱 SEED SCRIPT STARTED FOR STRAPI V5 🌱');
+  console.log('=====================================');
+  
   try {
-    console.log('🌱 Inizio popolamento contenuti iniziali...');
-    
-    // Dati estratti da index.html per ogni Content Type
-    
-    // 1. Contenuto per la sezione Home (campi corretti: subtitle, body)
-    const homeData = {
-      subtitle: "Psicologa Clinica",
-      body: "Supporto professionale per il tuo benessere psicologico attraverso consulenze personalizzate in un ambiente accogliente e riservato.",
-      publishedAt: new Date()
-    };
-    
-    // 2. Contenuti per i Servizi (campi corretti: title, description, icon, order)
-    const servicesData = [
-      {
-        title: "Consulenza Psicologica",
-        description: "Percorsi individuali personalizzati per gestire ansia, depressione, stress e difficoltà emotive con approccio professionale basato su evidenze scientifiche.",
-        icon: "🧠",
-        order: 1,
-        publishedAt: new Date()
-      },
-      {
-        title: "Terapia di Coppia",
-        description: "Supporto per coppie che attraversano crisi, conflitti o vogliono migliorare la comunicazione e l'intesa reciproca attraverso tecniche validate.",
-        icon: "💑",
-        order: 2,
-        publishedAt: new Date()
-      },
-      {
-        title: "Sostegno Familiare",
-        description: "Interventi per famiglie con dinamiche complesse, adolescenti in difficoltà o periodi di cambiamento e transizione significativi.",
-        icon: "👨‍👩‍👧‍👦",
-        order: 3,
-        publishedAt: new Date()
-      },
-      {
-        title: "Consulenza Breve",
-        description: "Interventi focalizzati su problematiche specifiche con obiettivi mirati e tempi ridotti per risultati rapidi ed efficaci.",
-        icon: "⚡",
-        order: 4,
-        publishedAt: new Date()
-      }
-    ];
-    
-    // 3. Contenuto per la sezione Chi Sono (Bio) - campi corretti: subtitle, body
-    const bioData = {
-      subtitle: "Psicologa clinica con passione per il benessere delle persone e specializzazione in terapia cognitivo-comportamentale.",
-      body: `Sono <strong>Martina Evangelisti</strong>, psicologa clinica specializzata nel supporto a persone che attraversano momenti di difficoltà emotiva, relazionale o psicologica. La mia passione per la psicologia nasce dalla convinzione che ogni persona abbia dentro di sé le risorse necessarie per stare bene.
+    // Only seed in development
+    if (process.env.NODE_ENV === 'production') {
+      console.log('⚠️  Skipping seed in production environment');
+      return;
+    }
 
-Nel mio lavoro utilizzo un <strong>approccio integrato</strong> che combina tecniche cognitive-comportamentali con elementi di mindfulness e terapia umanistica. Credo fortemente nell'importanza di personalizzare ogni intervento, perché ogni storia è unica e merita un percorso su misura.
+    console.log('✅ Running in development mode');
+    console.log('✅ Strapi object available:', !!strapi);
+    console.log('✅ Documents API available:', !!strapi.documents);
 
-Offro consulenze sia <strong>online</strong> che <strong>in presenza</strong>, garantendo sempre la massima riservatezza e professionalità. Il mio obiettivo è creare uno spazio sicuro dove poter esplorare insieme le difficoltà e sviluppare strategie efficaci per il benessere.`,
-      publishedAt: new Date()
-    };
-    
-    // 4. Contenuti per la Formazione Professionale (campi corretti: year, label)
-    const formationData = [
-      {
-        year: "2018",
-        label: "Laurea Magistrale in Psicologia Clinica - Università di Bologna",
-        publishedAt: new Date()
-      },
-      {
-        year: "2019",
-        label: "Abilitazione Professionale - Ordine Psicologi Emilia-Romagna",
-        publishedAt: new Date()
-      },
-      {
-        year: "2022",
-        label: "Specializzazione in Terapia Cognitivo-Comportamentale",
-        publishedAt: new Date()
-      }
-    ];
-    
-    // 5. Contenuto per la Quote (campi corretti: text)
-    const quoteData = {
-      text: "Ogni persona ha una storia unica che merita di essere ascoltata con attenzione, rispetto e senza giudizio. Il mio ruolo è accompagnarti nel tuo percorso di crescita.",
-      publishedAt: new Date()
-    };
-    
-    // 6. Contenuto per la sezione Contatti (campi corretti: subtitle)
-    const contactData = {
-      subtitle: "Sono qui per ascoltarti. Contattami per prenotare una consulenza o per qualsiasi informazione sui miei servizi.",
-      publishedAt: new Date()
-    };
-    
-    // 7. Contenuti per i Contact Items (campi corretti: icon, title, label)
-    const contactItemsData = [
-      {
-        icon: "phone",
-        title: "Telefono",
-        label: "+39 xxx xxx xxxx",
-        publishedAt: new Date()
-      },
-      {
-        icon: "email",
-        title: "Email",
-        label: "info@martinaevangelisti.it",
-        publishedAt: new Date()
-      },
-      {
-        icon: "location",
-        title: "Studio",
-        label: "Via Roma 123, Bologna (BO)",
-        publishedAt: new Date()
-      },
-      {
-        icon: "clock",
-        title: "Orari",
-        label: "Lun-Ven: 9-19 | Sab: 9-13",
-        publishedAt: new Date()
-      }
-    ];
-    
-    // 8. Contenuti per i Social Links (campi corretti: label, style - image richiede media upload)
-    const socialLinksData = [
-      {
-        label: "LinkedIn",
-        style: "primary",
-        publishedAt: new Date()
-      },
-      {
-        label: "Instagram",
-        style: "outline",
-        publishedAt: new Date()
-      }
-    ];
-    
-    // Funzione helper per creare o aggiornare un contenuto (Strapi v5)
-    const createContent = async (model, data) => {
-      try {
-        // Elimina tutti i contenuti esistenti per questo model
-        const existing = await strapi.entityService.findMany(model);
-        for (const item of existing) {
-          await strapi.entityService.delete(model, item.id);
+    // STEP 1: Seed HOME content
+    console.log('\n📋 Seeding HOME content...');
+    try {
+      // Check if home already exists
+      const existingHomes = await strapi.documents('api::home.home').findMany({
+        filters: {
+          subtitle: {
+            $contains: 'Placeholder'
+          }
         }
-        
-        // Crea nuovo contenuto
-        const created = await strapi.entityService.create(model, {
-          data: data
+      });
+
+      if (!existingHomes || existingHomes.length === 0) {
+        const homeData = {
+          subtitle: "Placeholder - TO REPLACE: Psicologa Clinica",
+          body: "<p>Placeholder - TO REPLACE: Supporto professionale per il tuo benessere psicologico</p>"
+        };
+
+        const createdHome = await strapi.documents('api::home.home').create({
+          data: homeData
         });
-        console.log(`✅ Creato: ${model} ID ${created.id}`);
-        return created;
-      } catch (error) {
-        console.error(`❌ Errore con ${model}:`, error.message);
-        return null;
-      }
-    };
-    
-    const createMultipleContent = async (model, dataArray, uniqueField = 'title') => {
-      try {
-        // Elimina tutti i contenuti esistenti per questo model
-        const existing = await strapi.entityService.findMany(model);
-        for (const item of existing) {
-          await strapi.entityService.delete(model, item.id);
-        }
+
+        console.log('✅ Created HOME entry with ID:', createdHome.id);
         
-        // Crea nuovi contenuti
-        const results = [];
-        for (const data of dataArray) {
-          const created = await strapi.entityService.create(model, {
-            data: data
+        // Publish the home entry if draft mode is enabled
+        if (createdHome.publishedAt === null) {
+          await strapi.documents('api::home.home').publish({
+            documentId: createdHome.documentId
           });
-          console.log(`✅ Creato: ${model} - ${data[uniqueField]} ID ${created.id}`);
-          results.push(created);
+          console.log('✅ Published HOME entry');
         }
-        return results;
-      } catch (error) {
-        console.error(`❌ Errore con ${model}:`, error.message);
-        return [];
+      } else {
+        console.log('→ HOME already exists, skipping');
       }
-    };
-    
-    // Popola i contenuti usando le nuove funzioni
-    console.log('📝 Creazione contenuti Home...');
-    await createContent('api::home.home', homeData);
-    
-    console.log('📝 Creazione contenuti Servizi...');
-    await createMultipleContent('api::service.service', servicesData, 'title');
-    
-    console.log('📝 Creazione contenuti Bio...');
-    await createContent('api::bio.bio', bioData);
-    
-    console.log('📝 Creazione contenuti Formazione...');
-    await createMultipleContent('api::formation.formation', formationData, 'label');
-    
-    console.log('📝 Creazione contenuti Quote...');
-    await createContent('api::quote.quote', quoteData);
-    
-    console.log('📝 Creazione contenuti Contatti...');
-    await createContent('api::contact.contact', contactData);
-    
-    console.log('📝 Creazione contenuti Contact Items...');
-    await createMultipleContent('api::contact-item.contact-item', contactItemsData, 'title');
-    
-    console.log('📝 Creazione contenuti Social Links...');
-    await createMultipleContent('api::social-link.social-link', socialLinksData, 'label');
-    
-    console.log('🎉 Popolamento contenuti iniziali completato con successo!');
-    
+    } catch (error) {
+      console.error('❌ Error seeding HOME:', error.message);
+      console.error('Details:', error);
+    }
+
+    // STEP 2: Seed SERVICES
+    console.log('\n📋 Seeding SERVICES...');
+    try {
+      const servicesToCreate = [
+        {
+          title: "Placeholder - TO REPLACE: Consulenza Psicologica",
+          icon: "🧠",
+          order: 1,
+          description: "Placeholder - TO REPLACE: Descrizione consulenza",
+          content: "<p>Placeholder - TO REPLACE: Contenuto dettagliato della consulenza psicologica</p>"
+        },
+        {
+          title: "Placeholder - TO REPLACE: Terapia di Coppia",
+          icon: "💑",
+          order: 2,
+          description: "Placeholder - TO REPLACE: Descrizione terapia di coppia",
+          content: "<p>Placeholder - TO REPLACE: Contenuto dettagliato della terapia di coppia</p>"
+        },
+        {
+          title: "Placeholder - TO REPLACE: Supporto Adolescenti",
+          icon: "🧒",
+          order: 3,
+          description: "Placeholder - TO REPLACE: Descrizione supporto adolescenti",
+          content: "<p>Placeholder - TO REPLACE: Contenuto dettagliato del supporto per adolescenti</p>"
+        }
+      ];
+
+      for (const serviceData of servicesToCreate) {
+        // Check if service already exists
+        const existingService = await strapi.documents('api::service.service').findMany({
+          filters: {
+            title: serviceData.title
+          },
+          limit: 1
+        });
+
+        if (!existingService || existingService.length === 0) {
+          const createdService = await strapi.documents('api::service.service').create({
+            data: serviceData
+          });
+          console.log(`✅ Created SERVICE: "${serviceData.title}" with ID: ${createdService.id}`);
+          
+          // Publish the service if draft mode is enabled
+          if (createdService.publishedAt === null) {
+            await strapi.documents('api::service.service').publish({
+              documentId: createdService.documentId
+            });
+            console.log(`✅ Published SERVICE: "${serviceData.title}"`);
+          }
+        } else {
+          console.log(`→ SERVICE "${serviceData.title}" already exists, skipping`);
+        }
+      }
+    } catch (error) {
+      console.error('❌ Error seeding SERVICES:', error.message);
+      console.error('Details:', error);
+    }
+
+    // STEP 3: Seed SOCIAL LINKS
+    console.log('\n📋 Seeding SOCIAL LINKS...');
+    try {
+      const socialLinksToCreate = [
+        {
+          label: "Placeholder - TO REPLACE: LinkedIn",
+          style: "linkedin",
+          url: "https://linkedin.com/in/placeholder"
+        },
+        {
+          label: "Placeholder - TO REPLACE: Instagram",
+          style: "instagram",
+          url: "https://instagram.com/placeholder"
+        }
+      ];
+
+      for (const socialData of socialLinksToCreate) {
+        // Check if social link already exists
+        const existingSocial = await strapi.documents('api::social-link.social-link').findMany({
+          filters: {
+            label: socialData.label
+          },
+          limit: 1
+        });
+
+        if (!existingSocial || existingSocial.length === 0) {
+          const createdSocial = await strapi.documents('api::social-link.social-link').create({
+            data: socialData
+          });
+          console.log(`✅ Created SOCIAL LINK: "${socialData.label}" with ID: ${createdSocial.id}`);
+          
+          // Publish the social link if draft mode is enabled
+          if (createdSocial.publishedAt === null) {
+            await strapi.documents('api::social-link.social-link').publish({
+              documentId: createdSocial.documentId
+            });
+            console.log(`✅ Published SOCIAL LINK: "${socialData.label}"`);
+          }
+        } else {
+          console.log(`→ SOCIAL LINK "${socialData.label}" already exists, skipping`);
+        }
+      }
+    } catch (error) {
+      console.error('❌ Error seeding SOCIAL LINKS:', error.message);
+      console.error('Details:', error);
+    }
+
+    // STEP 4: Verify seeded data
+    console.log('\n📊 Verifying seeded data...');
+    try {
+      const homes = await strapi.documents('api::home.home').findMany();
+      const services = await strapi.documents('api::service.service').findMany();
+      const socialLinks = await strapi.documents('api::social-link.social-link').findMany();
+
+      console.log(`📊 Total HOME entries: ${homes.length}`);
+      console.log(`📊 Total SERVICE entries: ${services.length}`);
+      console.log(`📊 Total SOCIAL LINK entries: ${socialLinks.length}`);
+    } catch (error) {
+      console.error('❌ Error verifying data:', error.message);
+    }
+
+    console.log('\n=====================================');
+    console.log('🎉 SEED SCRIPT COMPLETED SUCCESSFULLY!\n');
+
   } catch (error) {
-    console.error('❌ Errore durante il popolamento dei contenuti:', error);
+    console.error('\n❌ FATAL ERROR in seed script:', error);
+    console.error('Stack trace:', error.stack);
+    // Don't throw to prevent bootstrap failure
   }
 };
