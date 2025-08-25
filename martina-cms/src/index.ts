@@ -38,6 +38,7 @@ export default {
           data: {
             subtitle: "Placeholder - TO REPLACE: Psicologa Clinica",
             body: "<p>Placeholder - TO REPLACE: Supporto professionale per il tuo benessere psicologico</p>",
+            photo: null, // Campo obbligatorio ma può essere null per placeholder
             publishedAt: new Date() // Publish immediately
           }
         });
@@ -100,12 +101,14 @@ export default {
           label: "Placeholder - TO REPLACE: LinkedIn",
           style: "linkedin",
           url: "https://linkedin.com/in/placeholder",
+          image: null, // Campo obbligatorio ma può essere null per placeholder
           publishedAt: new Date()
         },
         {
           label: "Placeholder - TO REPLACE: Instagram",
           style: "instagram",
           url: "https://instagram.com/placeholder",
+          image: null, // Campo obbligatorio ma può essere null per placeholder
           publishedAt: new Date()
         }
       ];
