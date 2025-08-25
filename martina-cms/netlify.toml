@@ -1,0 +1,29 @@
+[build]
+  publish = "."
+  command = "echo 'No build step needed - static site with dynamic content loading'"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "max-age=0, no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "*.md"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+# Enable Git Gateway for Netlify CMS
+[context.production]
+  command = "echo 'Production build'"
+
+[context.deploy-preview]
+  command = "echo 'Preview build'"

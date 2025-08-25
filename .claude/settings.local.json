@@ -11,7 +11,8 @@
       "Bash(rm:*)",
       "Bash(npm run develop:*)",
       "WebFetch(domain:docs.strapi.io)",
-      "mcp__perplexity-ask__perplexity_ask"
+      "mcp__perplexity-ask__perplexity_ask",
+      "Bash(cp:*)"
     ],
     "deny": []
   }
