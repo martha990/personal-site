@@ -383,7 +383,7 @@ class ContentManager {
         const settings = this.contentCache.settings;
         if (!settings) return;
 
-        const { title, description, registration } = settings.frontmatter;
+        const { title, description, registration, free_consultation } = settings.frontmatter;
 
         // Update page title
         if (title) {
@@ -399,6 +399,16 @@ class ContentManager {
                 document.head.appendChild(metaDesc);
             }
             metaDesc.content = description;
+        }
+
+        // Handle free consultation section
+        const freeConsultationSection = document.querySelector('.free-consultation-section');
+        if (freeConsultationSection) {
+            if (free_consultation === false || free_consultation === 'false') {
+                freeConsultationSection.style.display = 'none';
+            } else {
+                freeConsultationSection.style.display = 'block';
+            }
         }
 
         // Update registration number
