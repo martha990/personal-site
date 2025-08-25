@@ -774,21 +774,33 @@
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
                 if (!user) {
+                    // Check for recovery token in URL hash
+                    const params = new URLSearchParams(window.location.hash.substring(1));
+                    const recoveryToken = params.get('recovery_token');
+                    const inviteToken = params.get('invite_token');
+                    
+                    if (recoveryToken) {
+                        // Redirect to admin with recovery token for proper handling
+                        window.location.href = `/admin/#recovery_token=${recoveryToken}`;
+                        return;
+                    }
+                    
+                    if (inviteToken) {
+                        window.netlifyIdentity.open('signup');
+                        return;
+                    }
+                    
+                    // Handle normal login
                     window.netlifyIdentity.on("login", () => {
                         document.location.href = "/admin/";
                     });
                 }
             });
             
-            // Handle invite tokens from URL
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    const params = new URLSearchParams(window.location.hash.substring(1));
-                    const inviteToken = params.get('invite_token');
-                    if (inviteToken) {
-                        window.netlifyIdentity.open('signup');
-                    }
-                }
+            // Handle recovery event
+            window.netlifyIdentity.on("recover", user => {
+                // Redirect to admin after password recovery
+                window.location.href = "/admin/";
             });
             
             // Redirect to admin after successful signup
