@@ -1,7 +1,7 @@
 ---
-phone: "+39 xxx xxx xxxx"
-email: "info@martinaevangelisti.it"
-address: "Via Roma 123, Bologna (BO)"
-hours: "Lun-Ven: 9-19 | Sab: 9-13"
-whatsapp: "393123456789"
+phone: "3240737226"
+email: "martina.evangelisti@coach.it"
+address: "Frosinone, Roma e online"
+hours: "Su appuntamento"
+whatsapp: "3240737226"
 ---

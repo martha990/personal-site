@@ -1,6 +1,6 @@
 ---
-title: "Martina Evangelisti - Psicologa Clinica"
-description: "Supporto professionale per il tuo benessere psicologico attraverso consulenze personalizzate in un ambiente accogliente e riservato."
-registration: "Iscritta all'Ordine degli Psicologi dell'Emilia-Romagna n. 1234"
+title: "Martina Evangelisti - Mental e Life Coach"
+description: "Mental e Life Coach certificata. Supporto per la crescita personale e il miglioramento delle performance. Consulenze individuali, di coppia, familiari e per la performance a Frosinone, Roma e online."
+registration: "AICP - Associazione Italiana Coach Professionisti"
 free_consultation: true
 ---

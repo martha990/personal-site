@@ -1,12 +1,13 @@
 ---
 title: "Chi Sono"
-intro: "Psicologa clinica con passione per il benessere delle persone e specializzazione in terapia cognitivo-comportamentale."
-quote: "Ogni persona ha una storia unica che merita di essere ascoltata con attenzione, rispetto e senza giudizio. Il mio ruolo è accompagnarti nel tuo percorso di crescita."
+intro: "Dottoressa in scienze e tecniche psicologiche, Life e Mental Coach certificata."
+quote: "Ogni persona deve trovare la propria strada e c'è una strada per persona, basta saperla cercare. Diventa ciò che sei."
 image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
 ---
 
-Sono **Martina Evangelisti**, psicologa clinica specializzata nel supporto a persone che attraversano momenti di difficoltà emotiva, relazionale o psicologica. La mia passione per la psicologia nasce dalla convinzione che ogni persona abbia dentro di sé le risorse necessarie per stare bene.
+Sono **Martina Evangelisti**, dottoressa in scienze e tecniche psicologiche, Life e Mental coach certificata. Offro sedute di coaching per dare supporto a momenti difficili della vita dell'essere umano, per massimizzare le performance sia nella vita di tutti i giorni che professionale o accademica e per guidarti ad una conoscenza di te tale da diventare ciò che vuoi essere davvero. Senza pesi sul cuore.
 
-Nel mio lavoro utilizzo un **approccio integrato** che combina tecniche cognitive-comportamentali con elementi di mindfulness e terapia umanistica. Credo fortemente nell'importanza di personalizzare ogni intervento, perché ogni storia è unica e merita un percorso su misura.
+Ogni persona deve trovare la propria strada e c'è una strada per persona, basta saperla cercare. A volte, porsi la domanda giusta è quasi più importante della risposta in sé perché tutti noi siamo chiamati ad assolvere un unico e solo imperativo assoluto dell'esistenza: **'diventa ciò che sei'**.
 
-Offro consulenze sia **online** che **in presenza**, garantendo sempre la massima riservatezza e professionalità. Il mio obiettivo è creare uno spazio sicuro dove poter esplorare insieme le difficoltà e sviluppare strategie efficaci per il benessere.
+**Il mio approccio:**
+Offro sedute di mental e Life coaching attraverso diversi approcci adattati alle tue esigenze specifiche e modalità preferite. Il coaching umanistico mi permette di accompagnarti in un percorso di crescita personale autentico e profondo.

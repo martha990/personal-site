@@ -1,5 +1,5 @@
 ---
-linkedin: "https://linkedin.com/in/martinaevangelisti"
-instagram: "https://instagram.com/martinaevangelisti"
-bio: "Contenuti di valore sul benessere psicologico e consigli per la crescita personale"
+linkedin: "https://linkedin.com/in/martina-evangelisti-coach"
+instagram: "https://instagram.com/martina.evangelisti.coach"
+bio: "Mental e Life Coach. Supporto per la crescita personale e il miglioramento delle performance. Diventa ciò che sei."
 ---

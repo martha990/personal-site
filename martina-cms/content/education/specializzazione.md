@@ -1,6 +1,6 @@
 ---
-year: "2022"
-title: "Specializzazione in Terapia Cognitivo-Comportamentale"
-institution: ""
-order: 3
+year: "2025"
+title: "Master in Coaching Umanistico"
+institution: "Istituto di Coaching"
+order: 2
 ---

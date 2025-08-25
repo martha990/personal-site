@@ -1,6 +1,6 @@
 ---
-year: "2018"
-title: "Laurea Magistrale in Psicologia Clinica"
-institution: "Università di Bologna"
+year: "2024"
+title: "Laurea in Scienze e Tecniche Psicologiche"
+institution: "Università"
 order: 1
 ---
