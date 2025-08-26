@@ -19,7 +19,7 @@ collections:
           - { label: "Sottotitolo", name: "subtitle", widget: "string", default: "Psicologa Clinica" }
           - { label: "Descrizione", name: "description", widget: "text", default: "Supporto professionale per il tuo benessere psicologico attraverso consulenze personalizzate in un ambiente accogliente e riservato." }
           - { label: "Link WhatsApp", name: "whatsapp_link", widget: "string", default: "https://wa.me/393123456789?text=Ciao%20Martina%2C%20vorrei%20informazioni%20sui%20tuoi%20servizi" }
-          - { label: "Immagine", name: "image", widget: "image", required: false }
+          - { label: "Immagine", name: "image", widget: "image", required: false, default: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
 
       - name: "about"
         label: "Chi Sono"
@@ -27,11 +27,11 @@ collections:
         fields:
           - { label: "Titolo Sezione", name: "section_title", widget: "string", default: "Chi Sono" }
           - { label: "Sottotitolo", name: "subtitle", widget: "text", default: "Psicologa clinica con passione per il benessere delle persone e specializzazione in terapia cognitivo-comportamentale." }
-          - { label: "Paragrafo 1", name: "paragraph_1", widget: "text" }
-          - { label: "Paragrafo 2", name: "paragraph_2", widget: "text" }
-          - { label: "Paragrafo 3", name: "paragraph_3", widget: "text" }
+          - { label: "Paragrafo 1", name: "paragraph_1", widget: "text", default: "Sono Martina Evangelisti, psicologa clinica specializzata nel supporto a persone che attraversano momenti di difficoltà emotiva, relazionale o psicologica. La mia passione per la psicologia nasce dalla convinzione che ogni persona abbia dentro di sé le risorse necessarie per stare bene." }
+          - { label: "Paragrafo 2", name: "paragraph_2", widget: "text", default: "Nel mio lavoro utilizzo un approccio integrato che combina tecniche cognitive-comportamentali con elementi di mindfulness e terapia umanistica. Credo fortemente nell'importanza di personalizzare ogni intervento, perché ogni storia è unica e merita un percorso su misura." }
+          - { label: "Paragrafo 3", name: "paragraph_3", widget: "text", default: "Offro consulenze sia online che in presenza, garantendo sempre la massima riservatezza e professionalità. Il mio obiettivo è creare uno spazio sicuro dove poter esplorare insieme le difficoltà e sviluppare strategie efficaci per il benessere." }
           - { label: "Citazione", name: "quote", widget: "text", default: "Ogni persona ha una storia unica che merita di essere ascoltata con attenzione, rispetto e senza giudizio. Il mio ruolo è accompagnarti nel tuo percorso di crescita." }
-          - { label: "Immagine", name: "image", widget: "image", required: false }
+          - { label: "Immagine", name: "image", widget: "image", required: false, default: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
 
       - name: "services"
         label: "Servizi"
@@ -42,6 +42,11 @@ collections:
           - label: "Lista Servizi"
             name: "services_list"
             widget: "list"
+            default:
+              - { title: "Consulenza Psicologica", description: "Percorsi individuali personalizzati per gestire ansia, depressione, stress e difficoltà emotive con approccio professionale basato su evidenze scientifiche.", emoji: "🧠" }
+              - { title: "Terapia di Coppia", description: "Supporto per coppie che attraversano crisi, conflitti o vogliono migliorare la comunicazione e l'intesa reciproca attraverso tecniche validate.", emoji: "💑" }
+              - { title: "Sostegno Familiare", description: "Interventi per famiglie con dinamiche complesse, adolescenti in difficoltà o periodi di cambiamento e transizione significativi.", emoji: "👨‍👩‍👧‍👦" }
+              - { title: "Consulenza Breve", description: "Interventi focalizzati su problematiche specifiche con obiettivi mirati e tempi ridotti per risultati rapidi ed efficaci.", emoji: "⚡" }
             fields:
               - { label: "Titolo", name: "title", widget: "string" }
               - { label: "Descrizione", name: "description", widget: "text" }
@@ -68,6 +73,10 @@ collections:
           - label: "Formazione Professionale"
             name: "education_list"
             widget: "list"
+            default:
+              - { year: "2018", title: "Laurea Magistrale in Psicologia Clinica - Università di Bologna" }
+              - { year: "2019", title: "Abilitazione Professionale - Ordine Psicologi Emilia-Romagna" }
+              - { year: "2022", title: "Specializzazione in Terapia Cognitivo-Comportamentale" }
             fields:
               - { label: "Anno", name: "year", widget: "string" }
               - { label: "Titolo", name: "title", widget: "string" }
