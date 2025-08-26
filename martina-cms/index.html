@@ -11,42 +11,182 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- Auth0 Configuration -->
+    <script src="auth0-config.js"></script>
     
-    <!-- Simplified Netlify Identity -->
+    <!-- Auth0 SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    
+    <!-- Auth0 Authentication Service -->
+    <script src="auth0-auth.js"></script>
+    
+    <!-- Enhanced Auth0 Authentication for Main Site -->
     <script>
         // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.netlifyIdentity) {
-                console.log('Initializing Netlify Identity...');
-                
-                // Simple initialization - let widget handle tokens automatically
-                window.netlifyIdentity.init();
-                
-                // Standard event handlers
-                window.netlifyIdentity.on('login', user => {
-                    console.log('Login successful:', user.email);
-                    window.location.href = '/admin/';
-                });
-                
-                window.netlifyIdentity.on('signup', user => {
-                    console.log('Signup successful:', user.email);
-                    window.location.href = '/admin/';
-                });
-                
-                window.netlifyIdentity.on('recover', user => {
-                    console.log('Password recovery successful:', user.email);
-                });
-                
-                window.netlifyIdentity.on('error', err => {
-                    console.error('Identity error:', err);
-                });
-                
-                console.log('Netlify Identity initialized successfully');
-            } else {
-                console.error('Netlify Identity widget not loaded');
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🔐 [Auth0] Main: Starting authentication...');
+            
+            // Wait for Auth0 service to initialize
+            if (!window.auth0AuthService) {
+                console.error('❌ [Auth0] Auth0 service not found');
+                return;
             }
+            
+            // Wait for initialization
+            let attempts = 0;
+            const maxAttempts = 10;
+            
+            while (!window.auth0AuthService.initialized && attempts < maxAttempts) {
+                console.log(`⏳ [Auth0] Main: Waiting for initialization (attempt ${attempts + 1}/${maxAttempts})...`);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                attempts++;
+            }
+            
+            if (!window.auth0AuthService.initialized) {
+                console.error('❌ [Auth0] Main: Failed to initialize authentication service');
+                return;
+            }
+            
+            console.log('✅ [Auth0] Main: Authentication service initialized');
+            
+            // Check if user is authenticated
+            const isAuthenticated = window.auth0AuthService.getIsAuthenticated();
+            
+            if (isAuthenticated) {
+                const user = await window.auth0AuthService.getUser();
+                const token = await window.auth0AuthService.getToken();
+                
+                console.log('✅ [Auth0] Main: User authenticated:', user.email);
+                
+                // Show admin button for authenticated users
+                showAdminButton(user);
+                
+                // Test admin access
+                await testAdminAccess(token);
+                
+            } else {
+                console.log('🔐 [Auth0] Main: User not authenticated');
+                // Show login option in admin area
+                setupAdminLogin();
+            }
+            
+            // Listen for authentication events
+            window.addEventListener('auth0-error', (event) => {
+                console.error('❌ [Auth0] Main: Authentication error:', event.detail);
+                showNotification(event.detail.error, 'error');
+            });
+            
+            // Test admin access
+            async function testAdminAccess(token) {
+                console.log('🔍 [Auth0] Main: Testing admin access...');
+                
+                try {
+                    const response = await fetch('/admin/', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token || 'none'}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    console.log('🔍 [Auth0] Main: Admin access test response:', response.status);
+                    
+                    if (response.ok) {
+                        console.log('✅ [Auth0] Main: Admin access successful');
+                        return true;
+                    } else {
+                        console.error('❌ [Auth0] Main: Admin access failed:', response.status, response.statusText);
+                        return false;
+                    }
+                } catch (error) {
+                    console.error('❌ [Auth0] Main: Admin access test error:', error);
+                    return false;
+                }
+            }
+            
+            // Show admin button for authenticated users
+            function showAdminButton(user) {
+                // Check if admin button already exists
+                if (document.getElementById('auth0-admin-button')) {
+                    return;
+                }
+                
+                const adminButton = document.createElement('div');
+                adminButton.id = 'auth0-admin-button';
+                adminButton.innerHTML = `
+                    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+                        <button onclick="goToAdmin()" style="background: #2563EB; color: white; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px;">
+                            <span>🔐</span>
+                            <span>Pannello Admin</span>
+                        </button>
+                        <button onclick="logout()" style="background: #ef4444; color: white; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; margin-top: 8px; width: 100%;">
+                            Esci
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(adminButton);
+            }
+            
+            // Setup admin login for non-authenticated users
+            function setupAdminLogin() {
+                // Find admin link or create one
+                const adminLink = document.querySelector('a[href="/admin/"]');
+                if (adminLink) {
+                    adminLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        login();
+                    });
+                }
+            }
+            
+            // Show notification
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    color: white;
+                    font-weight: bold;
+                    z-index: 1001;
+                    max-width: 300px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    background: ${type === 'error' ? '#ef4444' : type === 'success' ? '#10b981' : '#2563eb'};
+                `;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 5000);
+            }
+            
+            // Global functions
+            window.goToAdmin = function() {
+                console.log('🔐 [Auth0] Main: Going to admin panel');
+                window.location.href = '/admin/';
+            };
+            
+            window.login = async function() {
+                console.log('🔐 [Auth0] Main: Login requested');
+                await window.auth0AuthService.login();
+            };
+            
+            window.logout = async function() {
+                console.log('🔐 [Auth0] Main: Logout requested');
+                await window.auth0AuthService.logout();
+                document.getElementById('auth0-admin-button')?.remove();
+                setupAdminLogin();
+                showNotification('Disconnessione avvenuta con successo', 'success');
+            };
+            
+            console.log('✅ [Auth0] Main: Authentication setup complete');
         });
     </script>
     

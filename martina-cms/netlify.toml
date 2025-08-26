@@ -10,6 +10,11 @@
   to = "/admin/index.html"
   status = 200
 
+[[redirects]]
+  from = "/admin/callback"
+  to = "/admin/callback.html"
+  status = 200
+
 [[headers]]
   for = "/content/*"
   [headers.values]

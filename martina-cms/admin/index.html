@@ -4,41 +4,194 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   
-  <!-- Simplified Netlify Identity for Admin -->
+  <!-- Auth0 Configuration -->
+  <script src="../auth0-config.js"></script>
+  
+  <!-- Auth0 SDK -->
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+  
+  <!-- Auth0 Authentication Service -->
+  <script src="../auth0-auth.js"></script>
+  
+  <!-- Enhanced Auth0 Authentication for Admin -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      if (window.netlifyIdentity) {
-        console.log('Admin: Initializing Netlify Identity...');
-        
-        // Simple initialization - widget handles tokens automatically
-        window.netlifyIdentity.init();
-        
-        // Standard event handlers for admin
-        window.netlifyIdentity.on('login', user => {
-          console.log('Admin: Login successful:', user.email);
-          document.location.reload();
-        });
-        
-        window.netlifyIdentity.on('signup', user => {
-          console.log('Admin: Signup successful:', user.email);
-          document.location.reload();
-        });
-        
-        window.netlifyIdentity.on('recover', user => {
-          console.log('Admin: Password recovery successful:', user.email);
-          document.location.reload();
-        });
-        
-        window.netlifyIdentity.on('error', err => {
-          console.error('Admin: Identity error:', err);
-        });
-        
-        console.log('Admin: Netlify Identity initialized successfully');
-      } else {
-        console.error('Admin: Netlify Identity widget not loaded');
+    document.addEventListener('DOMContentLoaded', async function() {
+      console.log('🔐 [Auth0] Admin: Starting authentication...');
+      
+      // Wait for Auth0 service to initialize
+      if (!window.auth0AuthService) {
+        console.error('❌ [Auth0] Auth0 service not found');
+        return;
       }
+      
+      // Wait for initialization
+      let attempts = 0;
+      const maxAttempts = 10;
+      
+      while (!window.auth0AuthService.initialized && attempts < maxAttempts) {
+        console.log(`⏳ [Auth0] Waiting for initialization (attempt ${attempts + 1}/${maxAttempts})...`);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        attempts++;
+      }
+      
+      if (!window.auth0AuthService.initialized) {
+        console.error('❌ [Auth0] Failed to initialize authentication service');
+        showError('Impossibile inizializzare il servizio di autenticazione. Riprova più tardi.');
+        return;
+      }
+      
+      console.log('✅ [Auth0] Admin: Authentication service initialized');
+      
+      // Check if user is authenticated
+      const isAuthenticated = window.auth0AuthService.getIsAuthenticated();
+      
+      if (isAuthenticated) {
+        const user = await window.auth0AuthService.getUser();
+        const token = await window.auth0AuthService.getToken();
+        
+        console.log('✅ [Auth0] Admin: User authenticated:', user.email);
+        
+        // Test Git Gateway connectivity with Auth0 token
+        await testGitGateway(token);
+        
+        // Show user info
+        showUserInfo(user);
+        
+      } else {
+        console.log('🔐 [Auth0] Admin: User not authenticated, showing login UI');
+        showLoginUI();
+      }
+      
+      // Listen for authentication events
+      window.addEventListener('auth0-error', (event) => {
+        console.error('❌ [Auth0] Admin: Authentication error:', event.detail);
+        showError(event.detail.error);
+      });
+      
+      // Test Git Gateway connectivity
+      async function testGitGateway(token) {
+        console.log('🔍 [Auth0] Admin: Testing Git Gateway connectivity...');
+        
+        try {
+          const response = await fetch('/.netlify/git/github/commits', {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token || 'none'}`,
+              'Content-Type': 'application/json'
+            }
+          });
+          
+          console.log('🔍 [Auth0] Admin: Git Gateway response status:', response.status);
+          
+          if (response.ok) {
+            console.log('✅ [Auth0] Admin: Git Gateway connection successful');
+            return true;
+          } else {
+            console.error('❌ [Auth0] Admin: Git Gateway connection failed:', response.status, response.statusText);
+            return false;
+          }
+        } catch (error) {
+          console.error('❌ [Auth0] Admin: Git Gateway test error:', error);
+          return false;
+        }
+      }
+      
+      // Show user information
+      function showUserInfo(user) {
+        const userInfo = document.createElement('div');
+        userInfo.id = 'user-info';
+        userInfo.innerHTML = `
+          <div style="position: fixed; top: 20px; right: 20px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 1000;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 40px; height: 40px; background: #2563EB; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                ${user.email ? user.email.charAt(0).toUpperCase() : 'A'}
+              </div>
+              <div>
+                <div style="font-weight: bold; color: #1f2937;">${user.email || 'Admin'}</div>
+                <div style="font-size: 12px; color: #6b7280;">Autenticato con Auth0</div>
+              </div>
+              <button onclick="logout()" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">
+                Esci
+              </button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(userInfo);
+      }
+      
+      // Show login UI
+      function showLoginUI() {
+        const loginUI = document.createElement('div');
+        loginUI.id = 'login-ui';
+        loginUI.innerHTML = `
+          <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 9999;">
+            <div style="background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; width: 90%;">
+              <h2 style="color: #1f2937; margin-bottom: 20px;">Accesso al Pannello Admin</h2>
+              <p style="color: #6b7280; margin-bottom: 30px;">Accedi con Auth0 per gestire i contenuti del sito.</p>
+              
+              <button onclick="login()" style="background: #2563EB; color: white; border: none; padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; margin-bottom: 15px;">
+                Accedi con Auth0
+              </button>
+              
+              <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+                <button onclick="resetPassword()" style="background: transparent; color: #2563EB; border: 1px solid #2563EB; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">
+                  Password dimenticata?
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(loginUI);
+      }
+      
+      // Show error message
+      function showError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.id = 'error-message';
+        errorDiv.innerHTML = `
+          <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #ef4444; color: white; padding: 15px 20px; border-radius: 10px; z-index: 1001; max-width: 400px; text-align: center;">
+            <strong>Errore:</strong> ${message}
+            <button onclick="this.parentElement.remove()" style="background: none; border: none; color: white; margin-left: 10px; cursor: pointer; font-size: 18px;">×</button>
+          </div>
+        `;
+        document.body.appendChild(errorDiv);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+          if (errorDiv.parentElement) {
+            errorDiv.remove();
+          }
+        }, 5000);
+      }
+      
+      // Global functions for buttons
+      window.login = async function() {
+        console.log('🔐 [Auth0] Admin: Login button clicked');
+        await window.auth0AuthService.login();
+      };
+      
+      window.logout = async function() {
+        console.log('🔐 [Auth0] Admin: Logout button clicked');
+        await window.auth0AuthService.logout();
+        document.getElementById('user-info')?.remove();
+        showLoginUI();
+      };
+      
+      window.resetPassword = async function() {
+        const email = prompt('Inserisci la tua email per reimpostare la password:');
+        if (email) {
+          console.log('🔐 [Auth0] Admin: Password reset requested for:', email);
+          const success = await window.auth0AuthService.resetPassword(email);
+          if (success) {
+            alert('Email di reset password inviata! Controlla la tua casella di posta.');
+          } else {
+            alert('Impossibile inviare l\'email di reset. Verifica l\'indirizzo email e riprova.');
+          }
+        }
+      };
+      
+      console.log('✅ [Auth0] Admin: Authentication setup complete');
     });
   </script>
 </head>

@@ -1,6 +1,11 @@
 backend:
   name: git-gateway
   branch: main
+  # Auth0 integration configuration
+  auth_scope: repo,user:email
+  api_root: https://api.github.com
+  site_domain: localhost # Replace with your actual domain
+  base_url: https://your-site.netlify.app # Replace with your actual site URL
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
