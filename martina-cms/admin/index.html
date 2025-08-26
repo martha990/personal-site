@@ -5,49 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
-  <!-- Handle recovery token immediately -->
-  <script>
-    // Check for recovery token as soon as possible
-    (function() {
-      if (window.location.hash && window.location.hash.includes('recovery_token=')) {
-        // Wait for Identity widget to be ready
-        var checkInterval = setInterval(function() {
-          if (window.netlifyIdentity) {
-            clearInterval(checkInterval);
-            // Initialize and open recovery modal
-            window.netlifyIdentity.init();
-            window.netlifyIdentity.open('recover');
-          }
-        }, 100);
-      }
-    })();
-  </script>
 </head>
 <body>
   <!-- Include the script that builds the page and powers Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   
   <script>
-    // Initialize Netlify Identity if not already done by recovery handler
-    if (window.netlifyIdentity && !window.location.hash.includes('recovery_token=')) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          // Handle normal login
-          window.netlifyIdentity.on("login", () => {
-            document.location.reload();
-          });
-        }
-      });
+    // Initialize Netlify Identity Widget
+    if (window.netlifyIdentity) {
+      // Initialize the widget - it will automatically handle:
+      // - #invite_token (opens signup modal)
+      // - #recovery_token (opens recovery modal)
+      window.netlifyIdentity.init();
       
-      // Handle recovery completion
-      window.netlifyIdentity.on("recover", user => {
-        // Reload page after successful password recovery
+      // Reload page after successful login
+      window.netlifyIdentity.on("login", () => {
         document.location.reload();
       });
       
-      // Initialize the widget
-      window.netlifyIdentity.init();
+      // Reload page after successful signup
+      window.netlifyIdentity.on("signup", () => {
+        document.location.reload();
+      });
+      
+      // Optional: Handle recovery completion
+      window.netlifyIdentity.on("recover", () => {
+        // Reload to refresh the session
+        document.location.reload();
+      });
     }
   </script>
 </body>

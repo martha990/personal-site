@@ -14,17 +14,6 @@
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
-    <!-- Early Recovery Token Handler -->
-    <script>
-        // Handle recovery token immediately
-        if (window.location.hash && window.location.hash.includes('recovery_token=')) {
-            // Store the token
-            const token = window.location.hash;
-            // Redirect to admin with the token
-            window.location.replace('/admin/' + token);
-        }
-    </script>
-    
     <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
@@ -781,33 +770,28 @@
             });
         });
         
-        // Initialize Netlify Identity
+        // Initialize Netlify Identity Widget
         if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    // Check for invite token in URL hash
-                    const params = new URLSearchParams(window.location.hash.substring(1));
-                    const inviteToken = params.get('invite_token');
-                    
-                    if (inviteToken) {
-                        window.netlifyIdentity.open('signup');
-                        return;
-                    }
-                    
-                    // Handle normal login
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-            
-            // Redirect to admin after successful signup
-            window.netlifyIdentity.on("signup", user => {
-                window.location.href = "/admin/";
-            });
-            
-            // Initialize the widget
+            // Initialize the widget - it will automatically handle:
+            // - #invite_token (opens signup modal)
+            // - #recovery_token (opens recovery modal)
             window.netlifyIdentity.init();
+            
+            // Handle successful login - redirect to admin
+            window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+            });
+            
+            // Handle successful signup - redirect to admin
+            window.netlifyIdentity.on("signup", () => {
+                document.location.href = "/admin/";
+            });
+            
+            // Optional: Handle successful recovery
+            window.netlifyIdentity.on("recover", () => {
+                // User successfully reset password, they can now login
+                console.log('Password reset successful');
+            });
         }
     </script>
 </body>
