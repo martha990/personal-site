@@ -14,6 +14,69 @@
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
+    <!-- Early Identity Initialization -->
+    <script>
+        // Debug: Check for tokens immediately
+        console.log('Page loaded with hash:', window.location.hash);
+        
+        // Initialize as soon as script is available
+        (function() {
+            function initIdentity() {
+                if (window.netlifyIdentity) {
+                    console.log('Initializing Netlify Identity...');
+                    
+                    // Check for tokens before initialization
+                    const hash = window.location.hash;
+                    const hasInviteToken = hash.includes('invite_token=');
+                    const hasRecoveryToken = hash.includes('recovery_token=');
+                    
+                    console.log('Has invite token:', hasInviteToken);
+                    console.log('Has recovery token:', hasRecoveryToken);
+                    
+                    // Initialize the widget
+                    window.netlifyIdentity.init();
+                    
+                    // Manual token handling as fallback
+                    setTimeout(() => {
+                        if (hasInviteToken) {
+                            console.log('Opening invite modal manually...');
+                            window.netlifyIdentity.open('signup');
+                        } else if (hasRecoveryToken) {
+                            console.log('Opening recovery modal manually...');
+                            window.netlifyIdentity.open('recover');
+                        }
+                    }, 100);
+                    
+                    // Event handlers
+                    window.netlifyIdentity.on('login', () => {
+                        console.log('Login successful, redirecting...');
+                        window.location.href = '/admin/';
+                    });
+                    
+                    window.netlifyIdentity.on('signup', () => {
+                        console.log('Signup successful, redirecting...');
+                        window.location.href = '/admin/';
+                    });
+                    
+                    window.netlifyIdentity.on('recover', () => {
+                        console.log('Password recovery completed');
+                    });
+                    
+                    window.netlifyIdentity.on('init', (user) => {
+                        console.log('Identity initialized, user:', user);
+                    });
+                    
+                } else {
+                    // Retry if widget not loaded yet
+                    setTimeout(initIdentity, 50);
+                }
+            }
+            
+            // Start initialization immediately
+            initIdentity();
+        })();
+    </script>
+    
     <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
@@ -770,29 +833,8 @@
             });
         });
         
-        // Initialize Netlify Identity Widget
-        if (window.netlifyIdentity) {
-            // Initialize the widget - it will automatically handle:
-            // - #invite_token (opens signup modal)
-            // - #recovery_token (opens recovery modal)
-            window.netlifyIdentity.init();
-            
-            // Handle successful login - redirect to admin
-            window.netlifyIdentity.on("login", () => {
-                document.location.href = "/admin/";
-            });
-            
-            // Handle successful signup - redirect to admin
-            window.netlifyIdentity.on("signup", () => {
-                document.location.href = "/admin/";
-            });
-            
-            // Optional: Handle successful recovery
-            window.netlifyIdentity.on("recover", () => {
-                // User successfully reset password, they can now login
-                console.log('Password reset successful');
-            });
-        }
+        // Note: Netlify Identity is now initialized earlier in <head>
+        // This ensures tokens are detected before page content loads
     </script>
 </body>
 </html>
