@@ -441,8 +441,8 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <p class="font-semibold text-blu-scuro dark:text-white">Email</p>
-                            <a href="mailto:info@martinaevangelisti.it" class="text-blu-primario dark:text-blu-accent hover:text-blu-scuro dark:hover:text-white transition-colors duration-300 text-sm underline-offset-4 hover:underline">
-                                Scrivi una email
+                            <a href="mailto:info@martinaevangelisti.it" class="text-grigio-medio dark:text-gray-400 hover:text-blu-primario dark:hover:text-blu-accent transition-colors duration-300">
+                                dott.ssamartina...@outlook.com
                             </a>
                         </div>
                     </div>
@@ -856,8 +856,13 @@
                                 // Trasforma in mailto link invece di semplice testo
                                 const emailLink = document.createElement('a');
                                 emailLink.href = `mailto:${content.email}`;
-                                emailLink.className = 'text-blu-primario dark:text-blu-accent hover:text-blu-scuro dark:hover:text-white transition-colors duration-300 text-sm underline-offset-4 hover:underline';
-                                emailLink.textContent = 'Scrivi una email';
+                                emailLink.className = 'text-grigio-medio dark:text-gray-400 hover:text-blu-primario dark:hover:text-blu-accent transition-colors duration-300';
+                                
+                                // Tronca email se troppo lunga
+                                const emailDisplay = content.email.length > 25 
+                                    ? content.email.substring(0, 15) + '...@' + content.email.split('@')[1]
+                                    : content.email;
+                                emailLink.textContent = emailDisplay;
                                 
                                 value.parentNode.replaceChild(emailLink, value);
                                 console.log('Email aggiornata con mailto link');
