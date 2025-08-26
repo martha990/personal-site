@@ -1,27 +1,23 @@
 {
   "section_title": "Chi Sono",
-  "subtitle": "Psicologa clinica con passione per il benessere delle persone e specializzazione in terapia cognitivo-comportamentale.",
-  "paragraph_1": "Test",
-  "paragraph_2": "Mega test",
-  "paragraph_3": "Altro test",
-  "quote": "Citazione",
+  "subtitle": "Dottoressa in scienze e tecniche psicologiche, Life e Mental Coach.",
+  "paragraph_1": "Sono Martina Evangelisti, dottoressa in scienze e tecniche psicologiche, Life e Mental coach certificata. Offro sedute di coaching per dare supporto a momenti difficili della vita dell'essere umano, per massimizzare le performance sia nella vita di tutti i giorni che professionale o accademica.",
+  "paragraph_2": "Il mio obiettivo è guidarti ad una conoscenza di te tale da diventare ciò che vuoi essere davvero senza pesi sul cuore. Ogni persona deve trovare la propria strada e c'è una strada per persona, basta saperla cercare.",
+  "paragraph_3": "A volte, porsi la domanda giusta è quasi più importante della risposta in sé perché tutti noi siamo chiamati ad assolvere un unico e solo imperativo assoluto dell'esistenza: 'diventa ciò che sei'.",
+  "quote": "Ogni persona deve trovare la propria strada e c'è una strada per persona, basta saperla cercare.",
   "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   "education_list": [
     {
-      "year": "2018",
-      "title": "Laurea Magistrale in Psicologia Clinica - Università di Bologna"
-    },
-    {
-      "year": "2019",
-      "title": "Abilitazione Professionale - Ordine Psicologi Emilia-Romagna"
-    },
-    {
-      "year": "2022",
-      "title": "Specializzazione in Terapia Cognitivo-Comportamentale"
+      "year": "2024",
+      "title": "Laurea in scienze e tecniche psicologiche"
     },
     {
       "year": "2025",
-      "title": "Test"
+      "title": "Master in coaching umanistico"
+    },
+    {
+      "year": "2025",
+      "title": "Iscrizione ad AICP (Associazione Italiana Coach Professionisti)"
     }
   ]
 }

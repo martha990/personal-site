@@ -1,11 +1,11 @@
 {
   "section_title": "Contatti",
   "section_description": "Sono qui per ascoltarti. Contattami per prenotare una consulenza o per qualsiasi informazione sui miei servizi.",
-  "phone": "+39 xxx xxx xxxx",
-  "email": "info@martinaevangelisti.it",
-  "address": "Via Roma 123, Bologna (BO)",
+  "phone": "+39 324 073 7226",
+  "email": "dott.ssamartinaevangelisticoach@outlook.com",
+  "address": "Ricevo a Frosinone, Roma e online",
   "hours": "Lun-Ven: 9-19 | Sab: 9-13",
-  "whatsapp_consultation": "https://wa.me/393123456789?text=Ciao%20Martina%2C%20vorrei%20prenotare%20una%20consulenza",
+  "whatsapp_consultation": "https://wa.me/393240737226?text=Ciao%20Martina%2C%20vorrei%20prenotare%20una%20consulenza",
   "social_media": [
     {
       "platform": "LinkedIn",
@@ -14,14 +14,6 @@
     {
       "platform": "Instagram",
       "url": "https://instagram.com/martinaevangelisti"
-    },
-    {
-      "platform": "Altro",
-      "url": "Test"
-    },
-    {
-      "platform": "Telegram",
-      "url": "https://telegram.com/in/martinaevangelisti"
     }
   ]
 }
