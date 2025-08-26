@@ -2,6 +2,7 @@
 class ContentLoader {
     constructor() {
         this.contentCache = {};
+        console.log('ContentLoader inizializzato');
     }
 
     async loadContent(file) {
@@ -16,6 +17,7 @@ class ContentLoader {
             }
             const data = await response.json();
             this.contentCache[file] = data;
+            console.log(`Contenuto ${file} caricato:`, data);
             return data;
         } catch (error) {
             console.error(`Errore nel caricamento di ${file}:`, error);
@@ -27,30 +29,45 @@ class ContentLoader {
         const content = await this.loadContent('hero');
         if (!content) return;
 
-        // Aggiorna titolo
-        const titleElement = document.querySelector('h1.font-dancing');
-        if (titleElement) titleElement.textContent = content.title;
+        console.log('Aggiornamento sezione Hero...');
+
+        // Aggiorna titolo principale
+        const titleElement = document.querySelector('#home h1');
+        if (titleElement) {
+            titleElement.textContent = content.title;
+            console.log('Titolo aggiornato:', content.title);
+        }
 
         // Aggiorna sottotitolo
-        const subtitleElements = document.querySelectorAll('p.text-xl.lg\\:text-2xl');
-        if (subtitleElements[0]) subtitleElements[0].textContent = content.subtitle;
+        const subtitleElement = document.querySelector('#home p.text-xl');
+        if (subtitleElement) {
+            subtitleElement.textContent = content.subtitle;
+            console.log('Sottotitolo aggiornato:', content.subtitle);
+        }
 
         // Aggiorna descrizione
-        const descriptionElements = document.querySelectorAll('p.text-lg.lg\\:text-xl');
-        if (descriptionElements[0]) descriptionElements[0].textContent = content.description;
+        const descriptionElement = document.querySelector('#home p.text-lg');
+        if (descriptionElement) {
+            descriptionElement.textContent = content.description;
+            console.log('Descrizione aggiornata');
+        }
 
         // Aggiorna link WhatsApp
         const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
         whatsappLinks.forEach(link => {
-            if (link.textContent.includes('informazioni')) {
+            if (link.href.includes('informazioni') || link.textContent.includes('informazioni')) {
                 link.href = content.whatsapp_link;
+                console.log('Link WhatsApp aggiornato');
             }
         });
 
         // Aggiorna immagine se presente
         if (content.image) {
-            const heroImages = document.querySelectorAll('img[alt*="Martina Evangelisti"]');
-            heroImages.forEach(img => img.src = content.image);
+            const heroImages = document.querySelectorAll('#home img');
+            heroImages.forEach(img => {
+                img.src = content.image;
+                console.log('Immagine hero aggiornata');
+            });
         }
     }
 
@@ -58,28 +75,51 @@ class ContentLoader {
         const content = await this.loadContent('about');
         if (!content) return;
 
+        console.log('Aggiornamento sezione Chi Sono...');
+
         // Aggiorna titolo sezione
         const sectionTitle = document.querySelector('#chi-sono h2');
-        if (sectionTitle) sectionTitle.textContent = content.section_title;
+        if (sectionTitle) {
+            sectionTitle.textContent = content.section_title;
+            console.log('Titolo sezione aggiornato');
+        }
 
         // Aggiorna sottotitolo sezione
         const sectionSubtitle = document.querySelector('#chi-sono .text-center p');
-        if (sectionSubtitle) sectionSubtitle.textContent = content.subtitle;
+        if (sectionSubtitle) {
+            sectionSubtitle.textContent = content.subtitle;
+            console.log('Sottotitolo sezione aggiornato');
+        }
 
         // Aggiorna paragrafi
-        const paragraphs = document.querySelectorAll('#chi-sono .lg\\:col-span-2 p');
-        if (paragraphs[0]) paragraphs[0].innerHTML = content.paragraph_1.replace('Martina Evangelisti', '<strong class="text-blu-scuro dark:text-white">Martina Evangelisti</strong>').replace('approccio integrato', '<strong class="text-blu-scuro dark:text-white">approccio integrato</strong>');
-        if (paragraphs[1]) paragraphs[1].innerHTML = content.paragraph_2.replace('approccio integrato', '<strong class="text-blu-scuro dark:text-white">approccio integrato</strong>');
-        if (paragraphs[2]) paragraphs[2].innerHTML = content.paragraph_3.replace('online', '<strong class="text-blu-scuro dark:text-white">online</strong>').replace('in presenza', '<strong class="text-blu-scuro dark:text-white">in presenza</strong>');
+        const paragraphs = document.querySelectorAll('#chi-sono .lg\\:col-span-2 .space-y-6 p');
+        if (paragraphs[0] && content.paragraph_1) {
+            paragraphs[0].innerHTML = content.paragraph_1.replace('Martina Evangelisti', '<strong class="text-blu-scuro dark:text-white">Martina Evangelisti</strong>');
+            console.log('Paragrafo 1 aggiornato');
+        }
+        if (paragraphs[1] && content.paragraph_2) {
+            paragraphs[1].innerHTML = content.paragraph_2.replace('approccio integrato', '<strong class="text-blu-scuro dark:text-white">approccio integrato</strong>');
+            console.log('Paragrafo 2 aggiornato');
+        }
+        if (paragraphs[2] && content.paragraph_3) {
+            paragraphs[2].innerHTML = content.paragraph_3.replace(/\b(online|in presenza)\b/g, '<strong class="text-blu-scuro dark:text-white">$1</strong>');
+            console.log('Paragrafo 3 aggiornato');
+        }
 
         // Aggiorna citazione
-        const quote = document.querySelector('.bg-gradient-to-r p');
-        if (quote) quote.textContent = `"${content.quote}"`;
+        const quote = document.querySelector('#chi-sono .bg-gradient-to-r p');
+        if (quote) {
+            quote.textContent = `"${content.quote}"`;
+            console.log('Citazione aggiornata');
+        }
 
         // Aggiorna immagine se presente
         if (content.image) {
             const aboutImages = document.querySelectorAll('#chi-sono img');
-            aboutImages.forEach(img => img.src = content.image);
+            aboutImages.forEach(img => {
+                img.src = content.image;
+                console.log('Immagine Chi Sono aggiornata');
+            });
         }
     }
 
@@ -87,25 +127,42 @@ class ContentLoader {
         const content = await this.loadContent('services');
         if (!content) return;
 
+        console.log('Aggiornamento sezione Servizi...');
+
         // Aggiorna titolo sezione
         const sectionTitle = document.querySelector('#servizi h2');
-        if (sectionTitle) sectionTitle.textContent = content.section_title;
+        if (sectionTitle) {
+            sectionTitle.textContent = content.section_title;
+            console.log('Titolo servizi aggiornato');
+        }
 
         // Aggiorna descrizione sezione
         const sectionDescription = document.querySelector('#servizi .text-center p');
-        if (sectionDescription) sectionDescription.textContent = content.section_description;
+        if (sectionDescription) {
+            sectionDescription.textContent = content.section_description;
+            console.log('Descrizione servizi aggiornata');
+        }
 
         // Aggiorna servizi
-        const serviceCards = document.querySelectorAll('#servizi .grid > div');
+        const serviceCards = document.querySelectorAll('#servizi .grid > .group');
         content.services_list.forEach((service, index) => {
             if (serviceCards[index]) {
                 const emoji = serviceCards[index].querySelector('span.text-2xl');
                 const title = serviceCards[index].querySelector('h3');
-                const description = serviceCards[index].querySelector('p.text-grigio-medio');
+                const description = serviceCards[index].querySelector('p');
 
-                if (emoji) emoji.textContent = service.emoji;
-                if (title) title.textContent = service.title;
-                if (description) description.textContent = service.description;
+                if (emoji) {
+                    emoji.textContent = service.emoji;
+                    console.log(`Emoji servizio ${index + 1} aggiornata`);
+                }
+                if (title) {
+                    title.textContent = service.title;
+                    console.log(`Titolo servizio ${index + 1} aggiornato`);
+                }
+                if (description) {
+                    description.textContent = service.description;
+                    console.log(`Descrizione servizio ${index + 1} aggiornata`);
+                }
             }
         });
     }
@@ -114,46 +171,82 @@ class ContentLoader {
         const content = await this.loadContent('contact');
         if (!content) return;
 
+        console.log('Aggiornamento sezione Contatti...');
+
         // Aggiorna titolo sezione
         const sectionTitle = document.querySelector('#contatti h2');
-        if (sectionTitle) sectionTitle.textContent = content.section_title;
+        if (sectionTitle) {
+            sectionTitle.textContent = content.section_title;
+            console.log('Titolo contatti aggiornato');
+        }
 
         // Aggiorna descrizione sezione
         const sectionDescription = document.querySelector('#contatti .text-center p');
-        if (sectionDescription) sectionDescription.textContent = content.section_description;
+        if (sectionDescription) {
+            sectionDescription.textContent = content.section_description;
+            console.log('Descrizione contatti aggiornata');
+        }
 
-        // Aggiorna informazioni di contatto
-        const phoneElement = document.querySelector('#contatti p:contains("xxx")');
-        if (phoneElement) phoneElement.textContent = content.phone;
-
-        const emailElement = document.querySelector('#contatti p:contains("martinaevangelisti")');
-        if (emailElement) emailElement.textContent = content.email;
-
-        const addressElement = document.querySelector('#contatti p:contains("Bologna")');
-        if (addressElement) addressElement.textContent = content.address;
-
-        const hoursElement = document.querySelector('#contatti p:contains("Lun-Ven")');
-        if (hoursElement) hoursElement.textContent = content.hours;
+        // Aggiorna informazioni di contatto con selettori più specifici
+        const contactGrid = document.querySelector('#contatti .grid');
+        if (contactGrid) {
+            const contactItems = contactGrid.querySelectorAll('.flex.items-center.space-x-4');
+            
+            contactItems.forEach(item => {
+                const label = item.querySelector('p.font-semibold');
+                const value = item.querySelector('p.text-grigio-medio');
+                
+                if (label && value) {
+                    if (label.textContent === 'Telefono') {
+                        value.textContent = content.phone;
+                        console.log('Telefono aggiornato');
+                    } else if (label.textContent === 'Email') {
+                        value.textContent = content.email;
+                        console.log('Email aggiornata');
+                    } else if (label.textContent === 'Studio') {
+                        value.textContent = content.address;
+                        console.log('Indirizzo aggiornato');
+                    } else if (label.textContent === 'Orari') {
+                        value.textContent = content.hours;
+                        console.log('Orari aggiornati');
+                    }
+                }
+            });
+        }
 
         // Aggiorna link WhatsApp consulenza
-        const consultationLinks = document.querySelectorAll('a[href*="prenotare"]');
-        consultationLinks.forEach(link => link.href = content.whatsapp_consultation);
+        const consultationLinks = document.querySelectorAll('a[href*="prenotare"], a[href*="consulenza"]');
+        consultationLinks.forEach(link => {
+            link.href = content.whatsapp_consultation;
+            console.log('Link WhatsApp consulenza aggiornato');
+        });
 
         // Aggiorna link social
         const linkedinLinks = document.querySelectorAll('a[href*="linkedin"]');
-        linkedinLinks.forEach(link => link.href = content.linkedin);
+        linkedinLinks.forEach(link => {
+            link.href = content.linkedin;
+            console.log('Link LinkedIn aggiornato');
+        });
 
         const instagramLinks = document.querySelectorAll('a[href*="instagram"]');
-        instagramLinks.forEach(link => link.href = content.instagram);
+        instagramLinks.forEach(link => {
+            link.href = content.instagram;
+            console.log('Link Instagram aggiornato');
+        });
     }
 
     async loadEducationContent() {
         const content = await this.loadContent('education');
         if (!content) return;
 
-        // Trova il container della formazione
-        const educationContainer = document.querySelector('.space-y-4');
-        if (!educationContainer) return;
+        console.log('Aggiornamento sezione Formazione...');
+
+        // Trova il container della formazione specifico
+        const educationContainer = document.querySelector('#chi-sono .space-y-4');
+        if (!educationContainer) {
+            console.error('Container formazione non trovato');
+            return;
+        }
 
         // Pulisce il contenuto esistente
         educationContainer.innerHTML = '';
@@ -170,11 +263,13 @@ class ContentLoader {
                 </div>
             `;
             educationContainer.appendChild(educationItem);
+            console.log(`Formazione ${item.year} aggiunta`);
         });
     }
 
     async loadAllContent() {
         try {
+            console.log('=== Inizio caricamento contenuti ===');
             await Promise.all([
                 this.loadHeroContent(),
                 this.loadAboutContent(),
@@ -182,7 +277,7 @@ class ContentLoader {
                 this.loadContactContent(),
                 this.loadEducationContent()
             ]);
-            console.log('Tutti i contenuti sono stati caricati con successo');
+            console.log('=== Tutti i contenuti sono stati caricati con successo ===');
         } catch (error) {
             console.error('Errore nel caricamento dei contenuti:', error);
         }

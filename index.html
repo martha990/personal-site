@@ -780,6 +780,24 @@
                 }
             });
         }
+        
+        // Initialize content loading when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, inizializzo content loader...');
+            if (typeof window.loadAllContent === 'function') {
+                window.loadAllContent();
+            } else {
+                console.error('Content loader non disponibile');
+                // Retry dopo un breve delay
+                setTimeout(() => {
+                    if (typeof window.loadAllContent === 'function') {
+                        window.loadAllContent();
+                    } else {
+                        console.error('Content loader ancora non disponibile');
+                    }
+                }, 100);
+            }
+        });
     </script>
 </body>
 </html>
