@@ -441,7 +441,9 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <p class="font-semibold text-blu-scuro dark:text-white">Email</p>
-                            <p class="text-grigio-medio dark:text-gray-400 break-words text-sm">info@martinaevangelisti.it</p>
+                            <a href="mailto:info@martinaevangelisti.it" class="text-blu-primario dark:text-blu-accent hover:text-blu-scuro dark:hover:text-white transition-colors duration-300 text-sm underline-offset-4 hover:underline">
+                                Scrivi una email
+                            </a>
                         </div>
                     </div>
                     
@@ -851,8 +853,14 @@
                                 value.textContent = content.phone;
                                 console.log('Telefono aggiornato');
                             } else if (label.textContent === 'Email') {
-                                value.textContent = content.email;
-                                console.log('Email aggiornata');
+                                // Trasforma in mailto link invece di semplice testo
+                                const emailLink = document.createElement('a');
+                                emailLink.href = `mailto:${content.email}`;
+                                emailLink.className = 'text-blu-primario dark:text-blu-accent hover:text-blu-scuro dark:hover:text-white transition-colors duration-300 text-sm underline-offset-4 hover:underline';
+                                emailLink.textContent = 'Scrivi una email';
+                                
+                                value.parentNode.replaceChild(emailLink, value);
+                                console.log('Email aggiornata con mailto link');
                             } else if (label.textContent === 'Studio') {
                                 value.textContent = content.address;
                                 console.log('Indirizzo aggiornato');
