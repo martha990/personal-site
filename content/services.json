@@ -3,11 +3,6 @@
   "section_description": "Offro supporto psicologico professionale attraverso diversi approcci, adattati alle tue esigenze specifiche e modalità preferite.",
   "services_list": [
     {
-      "title": "Consulenza Psicologica",
-      "description": "Percorsi individuali personalizzati per gestire ansia, depressione, stress e difficoltà emotive con approccio professionale basato su evidenze scientifiche.",
-      "emoji": "🧠"
-    },
-    {
       "title": "Terapia di Coppia",
       "description": "Supporto per coppie che attraversano crisi, conflitti o vogliono migliorare la comunicazione e l'intesa reciproca attraverso tecniche validate.",
       "emoji": "💑"
@@ -16,6 +11,11 @@
       "title": "Sostegno Familiare",
       "description": "Interventi per famiglie con dinamiche complesse, adolescenti in difficoltà o periodi di cambiamento e transizione significativi.",
       "emoji": "👨‍👩‍👧‍👦"
+    },
+    {
+      "title": "Consulenza Psicologica",
+      "description": "TEEEEEEST",
+      "emoji": "🧠"
     },
     {
       "title": "Consulenza Breve",
