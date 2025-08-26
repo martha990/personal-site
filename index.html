@@ -755,18 +755,19 @@
                     console.log('Sottotitolo sezione aggiornato');
                 }
 
-                // Aggiorna paragrafi con supporto Markdown
+                // Aggiorna paragrafi (supporta sia HTML che Markdown)
                 const paragraphs = document.querySelectorAll('#chi-sono .lg\\:col-span-2 .space-y-6 p');
                 if (paragraphs[0] && content.paragraph_1) {
-                    paragraphs[0].innerHTML = this.parseMarkdown(content.paragraph_1);
+                    // Se contiene tag HTML, usalo direttamente, altrimenti parsa Markdown
+                    paragraphs[0].innerHTML = content.paragraph_1.includes('<') ? content.paragraph_1 : this.parseMarkdown(content.paragraph_1);
                     console.log('Paragrafo 1 aggiornato');
                 }
                 if (paragraphs[1] && content.paragraph_2) {
-                    paragraphs[1].innerHTML = this.parseMarkdown(content.paragraph_2);
+                    paragraphs[1].innerHTML = content.paragraph_2.includes('<') ? content.paragraph_2 : this.parseMarkdown(content.paragraph_2);
                     console.log('Paragrafo 2 aggiornato');
                 }
                 if (paragraphs[2] && content.paragraph_3) {
-                    paragraphs[2].innerHTML = this.parseMarkdown(content.paragraph_3);
+                    paragraphs[2].innerHTML = content.paragraph_3.includes('<') ? content.paragraph_3 : this.parseMarkdown(content.paragraph_3);
                     console.log('Paragrafo 3 aggiornato');
                 }
 
