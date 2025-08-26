@@ -1,0 +1,40 @@
+[build]
+  publish = "."
+  command = "echo 'No build needed - static site'"
+
+# Configurazione Netlify Identity
+[context.production]
+  environment = { NODE_ENV = "production" }
+
+# Headers per CORS e security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET"
+    Access-Control-Allow-Headers = "Content-Type"
+
+# Configurazione cache per contenuti JSON
+[[headers]]
+  for = "/content/*.json"
+  [headers.values]
+    Cache-Control = "public, max-age=300, s-maxage=300"
+
+# Configurazione Netlify CMS
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Configurazione Netlify Identity
+[[redirects]]
+  from = "/.netlify/identity/*"
+  to = "/.netlify/identity/*"
+  status = 200
