@@ -11,9 +11,9 @@ collections:
   - name: "content"
     label: "Contenuti Sito"
     files:
-      - name: "hero"
-        label: "Sezione Hero (Home)"
-        file: "content/hero.json"
+      - name: "home"
+        label: "Home"
+        file: "content/home.json"
         format: "json"
         fields:
           - { label: "Titolo", name: "title", widget: "string", default: "Martina Evangelisti" }

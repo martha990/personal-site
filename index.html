@@ -550,9 +550,6 @@
                         Psicologa clinica specializzata nel supporto al benessere psicologico 
                         attraverso consulenze personalizzate online e in presenza.
                     </p>
-                    <p class="text-gray-400 text-xs mt-2">
-                        Iscritta all'Ordine degli Psicologi dell'Emilia-Romagna n. 1234
-                    </p>
                 </div>
                 
                 <!-- Link Utili -->
@@ -563,7 +560,6 @@
                         <li><a href="#chi-sono" class="text-gray-300 hover:text-blu-accent transition-colors">Chi Sono</a></li>
                         <li><a href="#servizi" class="text-gray-300 hover:text-blu-accent transition-colors">Servizi</a></li>
                         <li><a href="#contatti" class="text-gray-300 hover:text-blu-accent transition-colors">Contatti</a></li>
-                        <li><a href="#privacy" class="text-gray-300 hover:text-blu-accent transition-colors">Privacy Policy</a></li>
                     </ul>
                 </div>
                 
@@ -678,10 +674,10 @@
                 }
             }
 
-            async updateHeroContent(content) {
+            async updateHomeContent(content) {
                 if (!content) return;
 
-                console.log('Aggiornamento sezione Hero...');
+                console.log('Aggiornamento sezione Home...');
 
                 // Aggiorna titolo principale
                 const titleElement = document.querySelector('#home h1');
@@ -708,10 +704,10 @@
 
                 // Aggiorna immagine se presente
                 if (content.image) {
-                    const heroImages = document.querySelectorAll('#home img');
-                    heroImages.forEach(img => {
+                    const homeImages = document.querySelectorAll('#home img');
+                    homeImages.forEach(img => {
                         img.src = content.image;
-                        console.log('Immagine hero aggiornata');
+                        console.log('Immagine home aggiornata');
                     });
                 }
             }
@@ -916,27 +912,27 @@
                 });
             }
 
-            async updateFooterContent(heroContent, servicesContent, contactContent) {
+            async updateFooterContent(homeContent, servicesContent, contactContent) {
                 console.log('Aggiornamento Footer...');
                 
-                if (!heroContent || !servicesContent || !contactContent) {
+                if (!homeContent || !servicesContent || !contactContent) {
                     console.error('Dati mancanti per l\'aggiornamento del footer');
                     return;
                 }
 
                 // Aggiorna nome brand nel footer
                 const brandName = document.querySelector('footer h3');
-                if (brandName && heroContent.title) {
+                if (brandName && homeContent.title) {
                     // Estrae solo il nome senza suffissi
-                    const cleanName = heroContent.title.split(' - ')[0];
+                    const cleanName = homeContent.title.split(' - ')[0];
                     brandName.textContent = cleanName;
                     console.log('Brand name footer aggiornato:', cleanName);
                 }
 
                 // Aggiorna descrizione nel footer
                 const footerDescription = document.querySelector('footer .text-gray-300');
-                if (footerDescription && heroContent.description) {
-                    footerDescription.textContent = heroContent.description;
+                if (footerDescription && homeContent.description) {
+                    footerDescription.textContent = homeContent.description;
                     console.log('Descrizione footer aggiornata');
                 }
 
@@ -1011,8 +1007,8 @@
                     console.log('=== Inizio caricamento contenuti ===');
                     
                     // Carica tutti i dati una sola volta
-                    const [heroContent, aboutContent, servicesContent, contactContent, educationContent] = await Promise.all([
-                        this.loadContent('hero'),
+                    const [homeContent, aboutContent, servicesContent, contactContent, educationContent] = await Promise.all([
+                        this.loadContent('home'),
                         this.loadContent('about'),
                         this.loadContent('services'),
                         this.loadContent('contact'),
@@ -1021,12 +1017,12 @@
                     
                     // Aggiorna le sezioni passando i dati come parametri
                     await Promise.all([
-                        this.updateHeroContent(heroContent),
+                        this.updateHomeContent(homeContent),
                         this.updateAboutContent(aboutContent),
                         this.updateServicesContent(servicesContent),
                         this.updateContactContent(contactContent),
                         this.updateEducationContent(educationContent),
-                        this.updateFooterContent(heroContent, servicesContent, contactContent)
+                        this.updateFooterContent(homeContent, servicesContent, contactContent)
                     ]);
                     
                     console.log('=== Tutti i contenuti sono stati caricati con successo ===');
