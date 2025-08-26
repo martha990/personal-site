@@ -14,6 +14,17 @@
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
+    <!-- Early Recovery Token Handler -->
+    <script>
+        // Handle recovery token immediately
+        if (window.location.hash && window.location.hash.includes('recovery_token=')) {
+            // Store the token
+            const token = window.location.hash;
+            // Redirect to admin with the token
+            window.location.replace('/admin/' + token);
+        }
+    </script>
+    
     <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
@@ -774,16 +785,9 @@
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
                 if (!user) {
-                    // Check for recovery token in URL hash
+                    // Check for invite token in URL hash
                     const params = new URLSearchParams(window.location.hash.substring(1));
-                    const recoveryToken = params.get('recovery_token');
                     const inviteToken = params.get('invite_token');
-                    
-                    if (recoveryToken) {
-                        // Redirect to admin with recovery token for proper handling
-                        window.location.href = `/admin/#recovery_token=${recoveryToken}`;
-                        return;
-                    }
                     
                     if (inviteToken) {
                         window.netlifyIdentity.open('signup');
@@ -795,12 +799,6 @@
                         document.location.href = "/admin/";
                     });
                 }
-            });
-            
-            // Handle recovery event
-            window.netlifyIdentity.on("recover", user => {
-                // Redirect to admin after password recovery
-                window.location.href = "/admin/";
             });
             
             // Redirect to admin after successful signup
