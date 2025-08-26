@@ -14,67 +14,40 @@
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
-    <!-- Early Identity Initialization -->
+    <!-- Simplified Netlify Identity -->
     <script>
-        // Debug: Check for tokens immediately
-        console.log('Page loaded with hash:', window.location.hash);
-        
-        // Initialize as soon as script is available
-        (function() {
-            function initIdentity() {
-                if (window.netlifyIdentity) {
-                    console.log('Initializing Netlify Identity...');
-                    
-                    // Check for tokens before initialization
-                    const hash = window.location.hash;
-                    const hasInviteToken = hash.includes('invite_token=');
-                    const hasRecoveryToken = hash.includes('recovery_token=');
-                    
-                    console.log('Has invite token:', hasInviteToken);
-                    console.log('Has recovery token:', hasRecoveryToken);
-                    
-                    // Initialize the widget
-                    window.netlifyIdentity.init();
-                    
-                    // Manual token handling as fallback
-                    setTimeout(() => {
-                        if (hasInviteToken) {
-                            console.log('Opening invite modal manually...');
-                            window.netlifyIdentity.open('signup');
-                        } else if (hasRecoveryToken) {
-                            console.log('Opening recovery modal manually...');
-                            window.netlifyIdentity.open('recover');
-                        }
-                    }, 100);
-                    
-                    // Event handlers
-                    window.netlifyIdentity.on('login', () => {
-                        console.log('Login successful, redirecting...');
-                        window.location.href = '/admin/';
-                    });
-                    
-                    window.netlifyIdentity.on('signup', () => {
-                        console.log('Signup successful, redirecting...');
-                        window.location.href = '/admin/';
-                    });
-                    
-                    window.netlifyIdentity.on('recover', () => {
-                        console.log('Password recovery completed');
-                    });
-                    
-                    window.netlifyIdentity.on('init', (user) => {
-                        console.log('Identity initialized, user:', user);
-                    });
-                    
-                } else {
-                    // Retry if widget not loaded yet
-                    setTimeout(initIdentity, 50);
-                }
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.netlifyIdentity) {
+                console.log('Initializing Netlify Identity...');
+                
+                // Simple initialization - let widget handle tokens automatically
+                window.netlifyIdentity.init();
+                
+                // Standard event handlers
+                window.netlifyIdentity.on('login', user => {
+                    console.log('Login successful:', user.email);
+                    window.location.href = '/admin/';
+                });
+                
+                window.netlifyIdentity.on('signup', user => {
+                    console.log('Signup successful:', user.email);
+                    window.location.href = '/admin/';
+                });
+                
+                window.netlifyIdentity.on('recover', user => {
+                    console.log('Password recovery successful:', user.email);
+                });
+                
+                window.netlifyIdentity.on('error', err => {
+                    console.error('Identity error:', err);
+                });
+                
+                console.log('Netlify Identity initialized successfully');
+            } else {
+                console.error('Netlify Identity widget not loaded');
             }
-            
-            // Start initialization immediately
-            initIdentity();
-        })();
+        });
     </script>
     
     <!-- Tailwind Configuration -->

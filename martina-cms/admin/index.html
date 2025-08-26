@@ -6,57 +6,40 @@
   <title>Content Manager</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   
-  <!-- Early Identity Debug for Admin -->
+  <!-- Simplified Netlify Identity for Admin -->
   <script>
-    console.log('Admin page loaded with hash:', window.location.hash);
-    
-    (function() {
-      function initAdminIdentity() {
-        if (window.netlifyIdentity) {
-          console.log('Admin: Initializing Netlify Identity...');
-          
-          const hash = window.location.hash;
-          const hasInviteToken = hash.includes('invite_token=');
-          const hasRecoveryToken = hash.includes('recovery_token=');
-          
-          console.log('Admin - Has invite token:', hasInviteToken);
-          console.log('Admin - Has recovery token:', hasRecoveryToken);
-          
-          window.netlifyIdentity.init();
-          
-          // Explicit token handling for admin
-          setTimeout(() => {
-            if (hasInviteToken) {
-              console.log('Admin: Opening invite modal manually...');
-              window.netlifyIdentity.open('signup');
-            } else if (hasRecoveryToken) {
-              console.log('Admin: Opening recovery modal manually...');
-              window.netlifyIdentity.open('recover');
-            }
-          }, 100);
-          
-          window.netlifyIdentity.on('login', () => {
-            console.log('Admin: Login successful, reloading...');
-            document.location.reload();
-          });
-          
-          window.netlifyIdentity.on('signup', () => {
-            console.log('Admin: Signup successful, reloading...');
-            document.location.reload();
-          });
-          
-          window.netlifyIdentity.on('recover', () => {
-            console.log('Admin: Recovery completed, reloading...');
-            document.location.reload();
-          });
-          
-        } else {
-          setTimeout(initAdminIdentity, 50);
-        }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.netlifyIdentity) {
+        console.log('Admin: Initializing Netlify Identity...');
+        
+        // Simple initialization - widget handles tokens automatically
+        window.netlifyIdentity.init();
+        
+        // Standard event handlers for admin
+        window.netlifyIdentity.on('login', user => {
+          console.log('Admin: Login successful:', user.email);
+          document.location.reload();
+        });
+        
+        window.netlifyIdentity.on('signup', user => {
+          console.log('Admin: Signup successful:', user.email);
+          document.location.reload();
+        });
+        
+        window.netlifyIdentity.on('recover', user => {
+          console.log('Admin: Password recovery successful:', user.email);
+          document.location.reload();
+        });
+        
+        window.netlifyIdentity.on('error', err => {
+          console.error('Admin: Identity error:', err);
+        });
+        
+        console.log('Admin: Netlify Identity initialized successfully');
+      } else {
+        console.error('Admin: Netlify Identity widget not loaded');
       }
-      
-      initAdminIdentity();
-    })();
+    });
   </script>
 </head>
 <body>
