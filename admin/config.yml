@@ -19,7 +19,6 @@ collections:
           - { label: "Titolo", name: "title", widget: "string", default: "Martina Evangelisti" }
           - { label: "Sottotitolo", name: "subtitle", widget: "string", default: "Psicologa Clinica" }
           - { label: "Descrizione", name: "description", widget: "text", default: "Supporto professionale per il tuo benessere psicologico attraverso consulenze personalizzate in un ambiente accogliente e riservato." }
-          - { label: "Link WhatsApp", name: "whatsapp_link", widget: "string", default: "https://wa.me/393123456789?text=Ciao%20Martina%2C%20vorrei%20informazioni%20sui%20tuoi%20servizi" }
           - { label: "Immagine", name: "image", widget: "image", required: false, default: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
 
       - name: "about"

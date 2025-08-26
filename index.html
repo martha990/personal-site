@@ -533,17 +533,6 @@
                     </p>
                 </div>
                 
-                <!-- Special Offer -->
-                <div class="mt-8 bg-gradient-to-r from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-xl border-2 border-blu-accent">
-                    <p class="text-center">
-                        <span class="text-2xl mr-2">🎁</span>
-                        <strong class="text-blu-scuro dark:text-white text-lg">Primo Colloquio Gratuito</strong>
-                        <br>
-                        <span class="text-grigio-medio dark:text-gray-400">
-                            Conosciamoci senza impegno. Il primo incontro di 30 minuti è sempre gratuito.
-                        </span>
-                    </p>
-                </div>
             </div>
         </div>
     </section>
@@ -716,14 +705,7 @@
                     console.log('Descrizione aggiornata');
                 }
 
-                // Aggiorna link WhatsApp
-                const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
-                whatsappLinks.forEach(link => {
-                    if (link.href.includes('informazioni') || link.textContent.includes('informazioni')) {
-                        link.href = content.whatsapp_link;
-                        console.log('Link WhatsApp aggiornato');
-                    }
-                });
+                // Gli aggiornamenti WhatsApp ora avvengono dalla sezione contatti
 
                 // Aggiorna immagine se presente
                 if (content.image) {
@@ -812,28 +794,31 @@
                     console.log('Descrizione servizi aggiornata');
                 }
 
-                // Aggiorna servizi
-                const serviceCards = document.querySelectorAll('#servizi .grid > .group');
-                content.services_list.forEach((service, index) => {
-                    if (serviceCards[index]) {
-                        const emoji = serviceCards[index].querySelector('span.text-2xl');
-                        const title = serviceCards[index].querySelector('h3');
-                        const description = serviceCards[index].querySelector('p');
-
-                        if (emoji) {
-                            emoji.textContent = service.emoji;
-                            console.log(`Emoji servizio ${index + 1} aggiornata`);
-                        }
-                        if (title) {
-                            title.textContent = service.title;
-                            console.log(`Titolo servizio ${index + 1} aggiornato`);
-                        }
-                        if (description) {
-                            description.textContent = service.description;
-                            console.log(`Descrizione servizio ${index + 1} aggiornata`);
-                        }
-                    }
-                });
+                // Aggiorna servizi dinamicamente
+                const servicesGrid = document.querySelector('#servizi .grid');
+                if (servicesGrid && content.services_list) {
+                    // Pulisce il contenuto esistente
+                    servicesGrid.innerHTML = '';
+                    
+                    // Crea dinamicamente le card dei servizi
+                    content.services_list.forEach((service, index) => {
+                        const serviceCard = document.createElement('div');
+                        serviceCard.className = 'group bg-white dark:bg-gray-900 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 cursor-pointer';
+                        serviceCard.innerHTML = `
+                            <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-6 mx-auto group-hover:bg-blu-primario transition-colors duration-300">
+                                <span class="text-2xl group-hover:text-white transition-colors duration-300">${service.emoji}</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-blu-scuro dark:text-white mb-4 text-center">
+                                ${service.title}
+                            </h3>
+                            <p class="text-grigio-medio dark:text-gray-400 text-center">
+                                ${service.description}
+                            </p>
+                        `;
+                        servicesGrid.appendChild(serviceCard);
+                        console.log(`Servizio ${index + 1} "${service.title}" aggiunto`);
+                    });
+                }
             }
 
             async loadContactContent() {
@@ -883,11 +868,11 @@
                     });
                 }
 
-                // Aggiorna link WhatsApp consulenza
-                const consultationLinks = document.querySelectorAll('a[href*="prenotare"], a[href*="consulenza"]');
-                consultationLinks.forEach(link => {
+                // Aggiorna tutti i link WhatsApp del sito
+                const allWhatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+                allWhatsappLinks.forEach(link => {
                     link.href = content.whatsapp_consultation;
-                    console.log('Link WhatsApp consulenza aggiornato');
+                    console.log('Link WhatsApp aggiornato:', link.textContent);
                 });
 
                 // Aggiorna link social
