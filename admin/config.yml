@@ -86,7 +86,7 @@ collections:
               - label: "Piattaforma"
                 name: "platform"
                 widget: "select"
-                options: ["Facebook", "Instagram", "Twitter", "LinkedIn", "YouTube", "TikTok", "WhatsApp", "Telegram", "Pinterest", "Altro"]
+                options: ["Facebook", "Instagram", "Twitter", "LinkedIn", "YouTube", "TikTok", "Telegram", "Pinterest", "Altro"]
                 default: "Instagram"
               - { label: "URL", name: "url", widget: "string" }
 
