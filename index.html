@@ -657,6 +657,18 @@
                 console.log('ContentLoader inizializzato');
             }
 
+            // Parser Markdown semplice per formattazione base
+            parseMarkdown(text) {
+                if (!text) return '';
+                return text
+                    // Bold: **testo** -> <strong>testo</strong>
+                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-blu-scuro dark:text-white">$1</strong>')
+                    // Italic: *testo* -> <em>testo</em>
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    // Line breaks: \n -> <br>
+                    .replace(/\n/g, '<br>');
+            }
+
             async loadContent(file) {
                 if (this.contentCache[file]) {
                     return this.contentCache[file];
@@ -743,18 +755,18 @@
                     console.log('Sottotitolo sezione aggiornato');
                 }
 
-                // Aggiorna paragrafi
+                // Aggiorna paragrafi con supporto Markdown
                 const paragraphs = document.querySelectorAll('#chi-sono .lg\\:col-span-2 .space-y-6 p');
                 if (paragraphs[0] && content.paragraph_1) {
-                    paragraphs[0].innerHTML = content.paragraph_1.replace('Martina Evangelisti', '<strong class="text-blu-scuro dark:text-white">Martina Evangelisti</strong>');
+                    paragraphs[0].innerHTML = this.parseMarkdown(content.paragraph_1);
                     console.log('Paragrafo 1 aggiornato');
                 }
                 if (paragraphs[1] && content.paragraph_2) {
-                    paragraphs[1].innerHTML = content.paragraph_2.replace('approccio integrato', '<strong class="text-blu-scuro dark:text-white">approccio integrato</strong>');
+                    paragraphs[1].innerHTML = this.parseMarkdown(content.paragraph_2);
                     console.log('Paragrafo 2 aggiornato');
                 }
                 if (paragraphs[2] && content.paragraph_3) {
-                    paragraphs[2].innerHTML = content.paragraph_3.replace(/\b(online|in presenza)\b/g, '<strong class="text-blu-scuro dark:text-white">$1</strong>');
+                    paragraphs[2].innerHTML = this.parseMarkdown(content.paragraph_3);
                     console.log('Paragrafo 3 aggiornato');
                 }
 
