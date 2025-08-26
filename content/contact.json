@@ -12,8 +12,16 @@
       "url": "https://linkedin.com/in/martinaevangelisti"
     },
     {
-      "platform": "Instagram", 
+      "platform": "Instagram",
       "url": "https://instagram.com/martinaevangelisti"
+    },
+    {
+      "platform": "Altro",
+      "url": "Test"
+    },
+    {
+      "platform": "Telegram",
+      "url": "https://telegram.com/in/martinaevangelisti"
     }
   ]
 }
