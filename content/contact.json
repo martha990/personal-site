@@ -6,6 +6,14 @@
   "address": "Via Roma 123, Bologna (BO)",
   "hours": "Lun-Ven: 9-19 | Sab: 9-13",
   "whatsapp_consultation": "https://wa.me/393123456789?text=Ciao%20Martina%2C%20vorrei%20prenotare%20una%20consulenza",
-  "linkedin": "https://linkedin.com/in/martinaevangelisti",
-  "instagram": "https://instagram.com/martinaevangelisti"
+  "social_media": [
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/martinaevangelisti"
+    },
+    {
+      "platform": "Instagram", 
+      "url": "https://instagram.com/martinaevangelisti"
+    }
+  ]
 }

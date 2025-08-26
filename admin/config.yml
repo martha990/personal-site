@@ -76,6 +76,17 @@ collections:
           - { label: "Indirizzo Studio", name: "address", widget: "string", default: "Via Roma 123, Bologna (BO)" }
           - { label: "Orari", name: "hours", widget: "string", default: "Lun-Ven: 9-19 | Sab: 9-13" }
           - { label: "Link WhatsApp Consulenza", name: "whatsapp_consultation", widget: "string", default: "https://wa.me/393123456789?text=Ciao%20Martina%2C%20vorrei%20prenotare%20una%20consulenza" }
-          - { label: "Link LinkedIn", name: "linkedin", widget: "string", default: "https://linkedin.com/in/martinaevangelisti" }
-          - { label: "Link Instagram", name: "instagram", widget: "string", default: "https://instagram.com/martinaevangelisti" }
+          - label: "Social Media"
+            name: "social_media"
+            widget: "list"
+            default:
+              - { platform: "LinkedIn", url: "https://linkedin.com/in/martinaevangelisti" }
+              - { platform: "Instagram", url: "https://instagram.com/martinaevangelisti" }
+            fields:
+              - label: "Piattaforma"
+                name: "platform"
+                widget: "select"
+                options: ["Facebook", "Instagram", "Twitter", "LinkedIn", "YouTube", "TikTok", "WhatsApp", "Telegram", "Pinterest", "Altro"]
+                default: "Instagram"
+              - { label: "URL", name: "url", widget: "string" }
 

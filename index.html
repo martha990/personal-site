@@ -11,6 +11,9 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
@@ -893,18 +896,75 @@
                     console.log('Link WhatsApp aggiornato:', link.textContent);
                 });
 
-                // Aggiorna link social
-                const linkedinLinks = document.querySelectorAll('a[href*="linkedin"]');
-                linkedinLinks.forEach(link => {
-                    link.href = content.linkedin;
-                    console.log('Link LinkedIn aggiornato');
-                });
+                // Aggiorna link social con nuova struttura
+                if (content.social_media) {
+                    // Icon mapping for Font Awesome
+                    const iconMap = {
+                        'Facebook': 'fab fa-facebook-f',
+                        'Instagram': 'fab fa-instagram', 
+                        'Twitter': 'fab fa-twitter',
+                        'LinkedIn': 'fab fa-linkedin-in',
+                        'YouTube': 'fab fa-youtube',
+                        'TikTok': 'fab fa-tiktok',
+                        'WhatsApp': 'fab fa-whatsapp',
+                        'Telegram': 'fab fa-telegram-plane',
+                        'Pinterest': 'fab fa-pinterest',
+                        'Altro': 'fas fa-link'
+                    };
 
-                const instagramLinks = document.querySelectorAll('a[href*="instagram"]');
-                instagramLinks.forEach(link => {
-                    link.href = content.instagram;
-                    console.log('Link Instagram aggiornato');
-                });
+                    // Aggiorna social nella sezione contatti (bottoni)
+                    const contactSocialContainer = document.querySelector('#contatti .flex.justify-center.space-x-4');
+                    if (contactSocialContainer) {
+                        contactSocialContainer.innerHTML = '';
+                        content.social_media.forEach(social => {
+                            const socialLink = document.createElement('a');
+                            socialLink.href = social.url;
+                            socialLink.target = '_blank';
+                            socialLink.rel = 'noopener noreferrer';
+                            socialLink.className = social.platform === 'LinkedIn' 
+                                ? 'inline-flex items-center px-6 py-3 bg-blu-primario hover:bg-blu-scuro text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-md'
+                                : 'inline-flex items-center px-6 py-3 border-2 border-blu-primario text-blu-primario hover:bg-blu-primario hover:text-white dark:border-blu-accent dark:text-blu-accent dark:hover:bg-blu-accent dark:hover:text-white rounded-full font-medium transition-all duration-300';
+                            
+                            const icon = document.createElement('i');
+                            icon.className = `${iconMap[social.platform] || iconMap['Altro']} mr-2`;
+                            
+                            socialLink.appendChild(icon);
+                            socialLink.appendChild(document.createTextNode(social.platform));
+                            contactSocialContainer.appendChild(socialLink);
+                        });
+                    }
+
+                    // Aggiorna social nel footer (icone)
+                    const footerSocialContainer = document.querySelector('footer .flex.space-x-4');
+                    if (footerSocialContainer) {
+                        footerSocialContainer.innerHTML = '';
+                        content.social_media.forEach(social => {
+                            const socialLink = document.createElement('a');
+                            socialLink.href = social.url;
+                            socialLink.target = '_blank';
+                            socialLink.rel = 'noopener noreferrer';
+                            socialLink.className = 'text-gray-400 hover:text-blu-accent transition-colors';
+                            socialLink.setAttribute('aria-label', social.platform);
+                            
+                            const icon = document.createElement('i');
+                            icon.className = `${iconMap[social.platform] || iconMap['Altro']} text-xl`;
+                            
+                            socialLink.appendChild(icon);
+                            footerSocialContainer.appendChild(socialLink);
+                        });
+                    }
+                } else {
+                    // Fallback per struttura vecchia
+                    const linkedinLinks = document.querySelectorAll('a[href*="linkedin"]');
+                    linkedinLinks.forEach(link => {
+                        if (content.linkedin) link.href = content.linkedin;
+                    });
+
+                    const instagramLinks = document.querySelectorAll('a[href*="instagram"]');
+                    instagramLinks.forEach(link => {
+                        if (content.instagram) link.href = content.instagram;
+                    });
+                }
             }
 
 
