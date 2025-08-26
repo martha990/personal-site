@@ -5,5 +5,23 @@
   "paragraph_2": "Mega test",
   "paragraph_3": "Altro test",
   "quote": "Citazione",
-  "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  "education_list": [
+    {
+      "year": "2018",
+      "title": "Laurea Magistrale in Psicologia Clinica - Università di Bologna"
+    },
+    {
+      "year": "2019",
+      "title": "Abilitazione Professionale - Ordine Psicologi Emilia-Romagna"
+    },
+    {
+      "year": "2022",
+      "title": "Specializzazione in Terapia Cognitivo-Comportamentale"
+    },
+    {
+      "year": "2025",
+      "title": "Test"
+    }
+  ]
 }

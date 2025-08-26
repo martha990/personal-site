@@ -766,6 +766,32 @@
                         console.log('Immagine Chi Sono aggiornata');
                     });
                 }
+
+                // Aggiorna formazione professionale
+                if (content.education_list) {
+                    const educationContainer = document.querySelector('#chi-sono .space-y-4');
+                    if (educationContainer) {
+                        // Pulisce il contenuto esistente
+                        educationContainer.innerHTML = '';
+
+                        // Aggiunge gli elementi di formazione
+                        content.education_list.forEach(item => {
+                            const educationItem = document.createElement('div');
+                            educationItem.className = 'flex items-start space-x-3';
+                            educationItem.innerHTML = `
+                                <div class="w-2 h-2 bg-blu-primario rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                    <strong class="text-blu-scuro dark:text-white">${item.year}:</strong>
+                                    <span class="text-grigio-medio dark:text-gray-400">${item.title}</span>
+                                </div>
+                            `;
+                            educationContainer.appendChild(educationItem);
+                            console.log(`Formazione ${item.year} aggiunta`);
+                        });
+                    } else {
+                        console.log('Container formazione non trovato nella sezione Chi Sono');
+                    }
+                }
             }
 
             async updateServicesContent(content) {
@@ -881,36 +907,6 @@
                 });
             }
 
-            async updateEducationContent(content) {
-                if (!content) return;
-
-                console.log('Aggiornamento sezione Formazione...');
-
-                // Trova il container della formazione specifico
-                const educationContainer = document.querySelector('#chi-sono .space-y-4');
-                if (!educationContainer) {
-                    console.error('Container formazione non trovato');
-                    return;
-                }
-
-                // Pulisce il contenuto esistente
-                educationContainer.innerHTML = '';
-
-                // Aggiunge gli elementi di formazione
-                content.education_list.forEach(item => {
-                    const educationItem = document.createElement('div');
-                    educationItem.className = 'flex items-start space-x-3';
-                    educationItem.innerHTML = `
-                        <div class="w-2 h-2 bg-blu-primario rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                            <strong class="text-blu-scuro dark:text-white">${item.year}:</strong>
-                            <span class="text-grigio-medio dark:text-gray-400">${item.title}</span>
-                        </div>
-                    `;
-                    educationContainer.appendChild(educationItem);
-                    console.log(`Formazione ${item.year} aggiunta`);
-                });
-            }
 
             async updateFooterContent(homeContent, servicesContent, contactContent) {
                 console.log('Aggiornamento Footer...');
@@ -1007,12 +1003,11 @@
                     console.log('=== Inizio caricamento contenuti ===');
                     
                     // Carica tutti i dati una sola volta
-                    const [homeContent, aboutContent, servicesContent, contactContent, educationContent] = await Promise.all([
+                    const [homeContent, aboutContent, servicesContent, contactContent] = await Promise.all([
                         this.loadContent('home'),
                         this.loadContent('about'),
                         this.loadContent('services'),
-                        this.loadContent('contact'),
-                        this.loadContent('education')
+                        this.loadContent('contact')
                     ]);
                     
                     // Aggiorna le sezioni passando i dati come parametri
@@ -1021,7 +1016,6 @@
                         this.updateAboutContent(aboutContent),
                         this.updateServicesContent(servicesContent),
                         this.updateContactContent(contactContent),
-                        this.updateEducationContent(educationContent),
                         this.updateFooterContent(homeContent, servicesContent, contactContent)
                     ]);
                     
