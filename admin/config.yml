@@ -1,0 +1,73 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: 'it'
+
+collections:
+  - name: "content"
+    label: "Contenuti Sito"
+    files:
+      - name: "hero"
+        label: "Sezione Hero (Home)"
+        file: "content/hero.json"
+        fields:
+          - { label: "Titolo", name: "title", widget: "string", default: "Martina Evangelisti" }
+          - { label: "Sottotitolo", name: "subtitle", widget: "string", default: "Psicologa Clinica" }
+          - { label: "Descrizione", name: "description", widget: "text", default: "Supporto professionale per il tuo benessere psicologico attraverso consulenze personalizzate in un ambiente accogliente e riservato." }
+          - { label: "Link WhatsApp", name: "whatsapp_link", widget: "string", default: "https://wa.me/393123456789?text=Ciao%20Martina%2C%20vorrei%20informazioni%20sui%20tuoi%20servizi" }
+          - { label: "Immagine", name: "image", widget: "image", required: false }
+
+      - name: "about"
+        label: "Chi Sono"
+        file: "content/about.json"
+        fields:
+          - { label: "Titolo Sezione", name: "section_title", widget: "string", default: "Chi Sono" }
+          - { label: "Sottotitolo", name: "subtitle", widget: "text", default: "Psicologa clinica con passione per il benessere delle persone e specializzazione in terapia cognitivo-comportamentale." }
+          - { label: "Paragrafo 1", name: "paragraph_1", widget: "text" }
+          - { label: "Paragrafo 2", name: "paragraph_2", widget: "text" }
+          - { label: "Paragrafo 3", name: "paragraph_3", widget: "text" }
+          - { label: "Citazione", name: "quote", widget: "text", default: "Ogni persona ha una storia unica che merita di essere ascoltata con attenzione, rispetto e senza giudizio. Il mio ruolo è accompagnarti nel tuo percorso di crescita." }
+          - { label: "Immagine", name: "image", widget: "image", required: false }
+
+      - name: "services"
+        label: "Servizi"
+        file: "content/services.json"
+        fields:
+          - { label: "Titolo Sezione", name: "section_title", widget: "string", default: "I Miei Servizi" }
+          - { label: "Descrizione Sezione", name: "section_description", widget: "text", default: "Offro supporto psicologico professionale attraverso diversi approcci, adattati alle tue esigenze specifiche e modalità preferite." }
+          - label: "Lista Servizi"
+            name: "services_list"
+            widget: "list"
+            fields:
+              - { label: "Titolo", name: "title", widget: "string" }
+              - { label: "Descrizione", name: "description", widget: "text" }
+              - { label: "Emoji", name: "emoji", widget: "string", hint: "Inserisci un'emoji (es: 🧠)" }
+
+      - name: "contact"
+        label: "Contatti"
+        file: "content/contact.json"
+        fields:
+          - { label: "Titolo Sezione", name: "section_title", widget: "string", default: "Contatti" }
+          - { label: "Descrizione Sezione", name: "section_description", widget: "text", default: "Sono qui per ascoltarti. Contattami per prenotare una consulenza o per qualsiasi informazione sui miei servizi." }
+          - { label: "Telefono", name: "phone", widget: "string", default: "+39 xxx xxx xxxx" }
+          - { label: "Email", name: "email", widget: "string", default: "info@martinaevangelisti.it" }
+          - { label: "Indirizzo Studio", name: "address", widget: "string", default: "Via Roma 123, Bologna (BO)" }
+          - { label: "Orari", name: "hours", widget: "string", default: "Lun-Ven: 9-19 | Sab: 9-13" }
+          - { label: "Link WhatsApp Consulenza", name: "whatsapp_consultation", widget: "string", default: "https://wa.me/393123456789?text=Ciao%20Martina%2C%20vorrei%20prenotare%20una%20consulenza" }
+          - { label: "Link LinkedIn", name: "linkedin", widget: "string", default: "https://linkedin.com/in/martinaevangelisti" }
+          - { label: "Link Instagram", name: "instagram", widget: "string", default: "https://instagram.com/martinaevangelisti" }
+
+      - name: "education"
+        label: "Formazione"
+        file: "content/education.json"
+        fields:
+          - label: "Formazione Professionale"
+            name: "education_list"
+            widget: "list"
+            fields:
+              - { label: "Anno", name: "year", widget: "string" }
+              - { label: "Titolo", name: "title", widget: "string" }
