@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: netlify
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
@@ -14,6 +14,7 @@ collections:
       - name: "hero"
         label: "Sezione Hero (Home)"
         file: "content/hero.json"
+        format: "json"
         fields:
           - { label: "Titolo", name: "title", widget: "string", default: "Martina Evangelisti" }
           - { label: "Sottotitolo", name: "subtitle", widget: "string", default: "Psicologa Clinica" }
@@ -24,6 +25,7 @@ collections:
       - name: "about"
         label: "Chi Sono"
         file: "content/about.json"
+        format: "json"
         fields:
           - { label: "Titolo Sezione", name: "section_title", widget: "string", default: "Chi Sono" }
           - { label: "Sottotitolo", name: "subtitle", widget: "text", default: "Psicologa clinica con passione per il benessere delle persone e specializzazione in terapia cognitivo-comportamentale." }
@@ -36,6 +38,7 @@ collections:
       - name: "services"
         label: "Servizi"
         file: "content/services.json"
+        format: "json"
         fields:
           - { label: "Titolo Sezione", name: "section_title", widget: "string", default: "I Miei Servizi" }
           - { label: "Descrizione Sezione", name: "section_description", widget: "text", default: "Offro supporto psicologico professionale attraverso diversi approcci, adattati alle tue esigenze specifiche e modalità preferite." }
@@ -55,6 +58,7 @@ collections:
       - name: "contact"
         label: "Contatti"
         file: "content/contact.json"
+        format: "json"
         fields:
           - { label: "Titolo Sezione", name: "section_title", widget: "string", default: "Contatti" }
           - { label: "Descrizione Sezione", name: "section_description", widget: "text", default: "Sono qui per ascoltarti. Contattami per prenotare una consulenza o per qualsiasi informazione sui miei servizi." }
@@ -69,6 +73,7 @@ collections:
       - name: "education"
         label: "Formazione"
         file: "content/education.json"
+        format: "json"
         fields:
           - label: "Formazione Professionale"
             name: "education_list"
