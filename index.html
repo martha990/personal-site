@@ -568,7 +568,7 @@
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
-                            <a href="mailto:info@martinaevangelisti.it" class="hover:text-blu-accent transition-colors">info@martinaevangelisti.it</a>
+                            <a href="mailto:info@martinaevangelisti.it" class="hover:text-blu-accent transition-colors">Invia una email</a>
                         </li>
                         <li class="flex items-center">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1030,10 +1030,11 @@
                     if (contactItems[1] && contactContent.email) {
                         const emailLink = contactItems[1].querySelector('a');
                         if (emailLink) {
-                            emailLink.textContent = contactContent.email;
+                            // Mantieni il testo placeholder ma aggiorna il mailto
+                            emailLink.textContent = 'Invia una email';
                             emailLink.href = `mailto:${contactContent.email}`;
                         }
-                        console.log('Email footer aggiornata');
+                        console.log('Email footer aggiornata con mailto dinamico');
                     }
                     
                     // Indirizzo (terzo item con icona mappa)
