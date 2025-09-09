@@ -943,16 +943,15 @@
                         });
                     }
                 } else {
-                    // Fallback per struttura vecchia
-                    const linkedinLinks = document.querySelectorAll('a[href*="linkedin"]');
-                    linkedinLinks.forEach(link => {
-                        if (content.linkedin) link.href = content.linkedin;
-                    });
-
-                    const instagramLinks = document.querySelectorAll('a[href*="instagram"]');
-                    instagramLinks.forEach(link => {
-                        if (content.instagram) link.href = content.instagram;
-                    });
+                    // Fallback: aggiorna i link social anche se non c'è il container
+                    if (content.social_media && Array.isArray(content.social_media)) {
+                        content.social_media.forEach(social => {
+                            const socialLinks = document.querySelectorAll(`a[href*="${social.platform.toLowerCase()}"]`);
+                            socialLinks.forEach(link => {
+                                link.href = social.url;
+                            });
+                        });
+                    }
                 }
             }
 
