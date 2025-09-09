@@ -13,3 +13,4 @@ src/
 
 # Internal documentation (do not publish)
 GITHUB_WORKFLOW_RULES.md
+CLAUDE.md
