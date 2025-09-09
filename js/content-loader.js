@@ -221,18 +221,17 @@ class ContentLoader {
             console.log('Link WhatsApp consulenza aggiornato');
         });
 
-        // Aggiorna link social
-        const linkedinLinks = document.querySelectorAll('a[href*="linkedin"]');
-        linkedinLinks.forEach(link => {
-            link.href = content.linkedin;
-            console.log('Link LinkedIn aggiornato');
-        });
-
-        const instagramLinks = document.querySelectorAll('a[href*="instagram"]');
-        instagramLinks.forEach(link => {
-            link.href = content.instagram;
-            console.log('Link Instagram aggiornato');
-        });
+        // Aggiorna link social dall'array social_media
+        if (content.social_media && Array.isArray(content.social_media)) {
+            content.social_media.forEach(social => {
+                const platform = social.platform.toLowerCase();
+                const socialLinks = document.querySelectorAll(`a[href*="${platform}"]`);
+                socialLinks.forEach(link => {
+                    link.href = social.url;
+                    console.log(`Link ${social.platform} aggiornato: ${social.url}`);
+                });
+            });
+        }
     }
 
     async loadEducationContent() {
