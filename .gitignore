@@ -10,3 +10,6 @@ src/
 .DS_Store
 *.tmp
 *.log
+
+# Internal documentation (do not publish)
+GITHUB_WORKFLOW_RULES.md
