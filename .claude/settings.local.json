@@ -15,7 +15,9 @@
       "Bash(cp:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "WebFetch(domain:www.netlify.com)"
+      "WebFetch(domain:www.netlify.com)",
+      "WebSearch",
+      "WebFetch(domain:github.com)"
     ],
     "deny": []
   }
