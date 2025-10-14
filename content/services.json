@@ -1,6 +1,6 @@
 {
   "section_title": "I Miei Servizi",
-  "section_description": "Offro sedute di mental e Life coaching attraverso diversi approcci adattati alle tue esigenze specifiche e modalità preferite.",
+  "section_description": "Offro sedute di mental e Life coaching attraverso diversi approcci adattati alle tue esigenze specifiche.",
   "services_list": [
     {
       "title": "Consulenza Singola",
@@ -18,8 +18,8 @@
       "emoji": "👪"
     },
     {
-      "title": "Consulenza per la Performance",
-      "description": "Si rivolge a coloro che hanno un obbiettivo da raggiungere e vogliono migliorare la propria performance mentale.",
+      "title": "Consulenza mirata all'obbiettivo",
+      "description": "Si rivolge a coloro che hanno un obbiettivo ben visibile da raggiungere e vogliono migliorare la propria performance mentale nel periodo di preparazione, durante il raggiungimento dello scopo e post-performance ",
       "emoji": "🎯"
     }
   ]
