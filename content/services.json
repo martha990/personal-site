@@ -14,13 +14,18 @@
     },
     {
       "title": "Consulenza Familiare",
-      "description": "Consulenze per famiglie con e senza figli volte a dare supporto nei momenti di criticità e a costruire una relazione familiare sana e costruttiva per tutti utilizzando metodiche che favoriscono il dialogo e la sistematizzazione della vita domestica e famigliare.\n",
+      "description": "Consulenze per famiglie con e senza figli volte a dare supporto nei momenti di criticità e a costruire una relazione familiare sana e costruttiva per tutti utilizzando metodiche che favoriscono il dialogo e la sistematizzazione della vita domestica e familiare.\n",
       "emoji": "👪"
     },
     {
       "title": "Consulenza mirata all'obbiettivo",
       "description": "Si rivolge a coloro che hanno un obbiettivo ben visibile da raggiungere e vogliono migliorare la propria performance mentale nel periodo di preparazione, durante il raggiungimento dello scopo e post-performance ",
       "emoji": "🎯"
+    },
+    {
+      "title": "Consulenze Aziendali ",
+      "description": "Tipo di consulenza che si rivolge a gruppi di elementi, in ambito sportivo e lavorativo per alleggerire la componente disfunzionale interna al gruppo e potenziare, attraverso strategie mirate, le competenze dei singoli e investirle positivamente nell'azienda.\nOrganizzazione di progetti personalizzati di team building aziendale",
+      "emoji": "📈"
     }
   ]
 }
